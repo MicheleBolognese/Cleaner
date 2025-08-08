@@ -86,6 +86,20 @@
       "name": "PEMFCModel4par",
       "defaultDisabled": false,
       "id": "65e50b485c5740bb87e6574a7f1f769b"
+    },
+    {
+      "relpath": "SAMU",
+      "contentType": "MODELICA",
+      "name": "SAMU",
+      "defaultDisabled": false,
+      "id": "f6f76a749e8c4d819089174afd837e3a"
+    },
+    {
+      "relpath": "MIKE",
+      "contentType": "MODELICA",
+      "name": "MIKE",
+      "defaultDisabled": false,
+      "id": "f7f88a4f23fb4183a62773f991dbe9a4"
     }
   ],
   "executionOptions": []
