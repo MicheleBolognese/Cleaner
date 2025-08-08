@@ -1,0 +1,5 @@
+PartialWaterContent
+PartialWaterDiffusion
+PartialElectroOsmoticDrag
+PartialWaterPermeation
+PartialGasDiffusion

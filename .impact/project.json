@@ -1,0 +1,92 @@
+{
+  "name": "OldDiego",
+  "format": "1.0.0",
+  "dependencies": [
+    {
+      "name": "FuelCell",
+      "versionSpecifier": "1.21.0+build.6"
+    },
+    {
+      "name": "Modelon",
+      "versionSpecifier": "5.0.0+build.23"
+    },
+    {
+      "name": "Modelica",
+      "versionSpecifier": "4.0.0"
+    }
+  ],
+  "content": [
+    {
+      "relpath": "Resources/Views",
+      "contentType": "VIEWS",
+      "defaultDisabled": false,
+      "id": "352f84d95e924b8c93f9becdffd1c514"
+    },
+    {
+      "relpath": "Resources/Favorites",
+      "contentType": "FAVORITES",
+      "defaultDisabled": false,
+      "id": "194824a121a04d96922b56927f72205e"
+    },
+    {
+      "relpath": "Resources/CustomFunctions",
+      "contentType": "CUSTOM_FUNCTIONS",
+      "defaultDisabled": false,
+      "id": "add53693133c4333a403be69de677c45"
+    },
+    {
+      "relpath": "Resources/Custom",
+      "contentType": "GENERIC",
+      "defaultDisabled": false,
+      "id": "8d695a3da1604f6b83dedbe6b01a3b76"
+    },
+    {
+      "relpath": "ReferenceResults",
+      "contentType": "REFERENCE_RESULTS",
+      "defaultDisabled": false,
+      "id": "d2655188a0df4d11b477ce60e7678a95"
+    },
+    {
+      "relpath": "Resources/ExperimentDefinitions",
+      "contentType": "EXPERIMENT_DEFINITIONS",
+      "defaultDisabled": false,
+      "id": "9fb4d4abdd6b44a18228f738e1d1c10d"
+    },
+    {
+      "relpath": "Aging",
+      "contentType": "MODELICA",
+      "name": "Aging",
+      "defaultDisabled": false,
+      "id": "ccbb1f274d0244899c3482affd4f8504"
+    },
+    {
+      "relpath": "Examples",
+      "contentType": "MODELICA",
+      "name": "Examples",
+      "defaultDisabled": false,
+      "id": "41c398fcb5064c86be7620a765f3c488"
+    },
+    {
+      "relpath": "PEMFCModel",
+      "contentType": "MODELICA",
+      "name": "PEMFCModel",
+      "defaultDisabled": false,
+      "id": "d03bf3b27e2341cca741749ec93bb268"
+    },
+    {
+      "relpath": "PEMFCModel2par",
+      "contentType": "MODELICA",
+      "name": "PEMFCModel2par",
+      "defaultDisabled": false,
+      "id": "f7c6b9ae48a14b4a91631b5af550da91"
+    },
+    {
+      "relpath": "PEMFCModel4par",
+      "contentType": "MODELICA",
+      "name": "PEMFCModel4par",
+      "defaultDisabled": false,
+      "id": "65e50b485c5740bb87e6574a7f1f769b"
+    }
+  ],
+  "executionOptions": []
+}

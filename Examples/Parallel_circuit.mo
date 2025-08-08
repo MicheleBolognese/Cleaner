@@ -1,0 +1,41 @@
+within Examples;
+model Parallel_circuit
+    .Modelica.Electrical.Analog.Sources.SignalVoltage signalVoltage3 annotation(Placement(transformation(extent = {{-10.0,-10.0},{10.0,10.0}},origin = {61.08840039726921,51.36016855302234},rotation = 90.0)));
+    .PEMFCModel.Membrane.Losses.ActivationLoss.ZeroLoss_1 zeroLoss_9 annotation(Placement(transformation(extent = {{-10.0,-10.0},{10.0,10.0}},origin = {61.12815113634686,-2.9029119186200916},rotation = -90.0)));
+    .PEMFCModel.Membrane.Losses.ActivationLoss.ZeroLoss_1 zeroLoss_10 annotation(Placement(transformation(extent = {{-10.0,-10.0},{10.0,10.0}},origin = {61.16790187542446,-30.211880655195408},rotation = -90.0)));
+    .PEMFCModel.Membrane.Losses.ActivationLoss.ZeroLoss_1 zeroLoss_11 annotation(Placement(transformation(extent = {{-10.0,-9.999999999999996},{10.0,9.999999999999996}},origin = {61.281524636511975,-57.24967349946789},rotation = -90.0)));
+    .PEMFCModel.Membrane.Losses.ActivationLoss.ZeroLoss_1 zeroLoss_12 annotation(Placement(transformation(extent = {{-10.0,-10.0},{10.0,10.0}},origin = {61.179990632963,24.185306980656925},rotation = -90.0)));
+    .Modelica.Electrical.Analog.Sources.SignalVoltage signalVoltage2 annotation(Placement(transformation(extent = {{-10.0,-10.0},{10.0,10.0}},origin = {9.077637514644213,51.37080291219429},rotation = 90.0)));
+    .PEMFCModel.Membrane.Losses.ActivationLoss.ZeroLoss_1 zeroLoss_5 annotation(Placement(transformation(extent = {{-10.0,-10.0},{10.0,10.0}},origin = {9.169227750337999,24.19594133982889},rotation = -90.0)));
+    .PEMFCModel.Membrane.Losses.ActivationLoss.ZeroLoss_1 zeroLoss_6 annotation(Placement(transformation(extent = {{-10.0,-10.0},{10.0,10.0}},origin = {9.11738825372186,-2.892277559448125},rotation = -90.0)));
+    .PEMFCModel.Membrane.Losses.ActivationLoss.ZeroLoss_1 zeroLoss_7 annotation(Placement(transformation(extent = {{-10.000000000000007,-10.0},{10.000000000000007,10.0}},origin = {9.157138992799478,-30.20124629602344},rotation = -90.0)));
+    .PEMFCModel.Membrane.Losses.ActivationLoss.ZeroLoss_1 zeroLoss_8 annotation(Placement(transformation(extent = {{-10.0,-10.0},{10.0,10.0}},origin = {9.270761753886976,-57.23903914029593},rotation = -90.0)));
+    .Modelica.Electrical.Analog.Sources.SignalVoltage signalVoltage annotation(Placement(transformation(extent = {{-9.999999999999998,-10.0},{9.999999999999998,10.0}},origin = {-22.421178990530848,51.41037775804317},rotation = 90.0)));
+    .PEMFCModel.Membrane.Losses.ActivationLoss.ZeroLoss_1 zeroLoss_ annotation(Placement(transformation(extent = {{-9.999999999999998,-10.0},{9.999999999999998,10.0}},origin = {-22.32958875483706,24.235516185677767},rotation = -90.0)));
+    .PEMFCModel.Membrane.Losses.ActivationLoss.ZeroLoss_1 zeroLoss_2 annotation(Placement(transformation(extent = {{-9.999999999999998,-10.0},{9.999999999999998,10.0}},origin = {-22.3814282514532,-2.852702713599257},rotation = -90.0)));
+    .PEMFCModel.Membrane.Losses.ActivationLoss.ZeroLoss_1 zeroLoss_3 annotation(Placement(transformation(extent = {{-9.999999999999998,-10.0},{9.999999999999998,10.0}},origin = {-22.341677512375583,-30.161671450174566},rotation = -90.0)));
+    .PEMFCModel.Membrane.Losses.ActivationLoss.ZeroLoss_1 zeroLoss_4 annotation(Placement(transformation(extent = {{-9.999999999999998,-10.0},{9.999999999999998,10.0}},origin = {-22.228054751288084,-57.199464294447054},rotation = -90.0)));
+    .Modelica.Electrical.Analog.Interfaces.PositivePin pin_p2 annotation(Placement(transformation(extent = {{-77.9114952432376,-84.20477329796421},{-57.911495243237596,-64.20477329796421}},origin = {0.0,0.0},rotation = 0.0)));
+    .Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation(Placement(transformation(extent = {{-77.32961487853666,56.44568325158113},{-57.32961487853666,76.44568325158113}},origin = {0.0,0.0},rotation = 0.0)));
+equation
+    connect(zeroLoss_12.pin_n,zeroLoss_9.pin_p) annotation(Line(points = {{61.17999063296299,14.185306980656925},{61.12815113634685,7.097088081379908}},color = {0,0,255}));
+    connect(zeroLoss_9.pin_n,zeroLoss_10.pin_p) annotation(Line(points = {{61.12815113634685,-12.902911918620092},{61.167901875424455,-20.211880655195408}},color = {0,0,255}));
+    connect(zeroLoss_10.pin_n,zeroLoss_11.pin_p) annotation(Line(points = {{61.167901875424455,-40.21188065519541},{61.167901875424455,-47.249673499467896},{61.28152463651197,-47.249673499467896}},color = {0,0,255}));
+    connect(signalVoltage3.p,zeroLoss_12.pin_p[1]) annotation(Line(points = {{61.08840039726921,41.36016855302233},{61.08840039726921,37.545316325446755},{61.179990632963,37.545316325446755},{61.179990632963,34.185306980656925}},color = {0,0,255}));
+    connect(signalVoltage2.p,zeroLoss_5.pin_p[1]) annotation(Line(points = {{9.07763751464421,41.37080291219429},{9.07763751464421,37.55595068461872},{9.169227750337996,37.55595068461872},{9.169227750337996,34.19594133982889}},color = {0,0,255}));
+    connect(zeroLoss_5.pin_n,zeroLoss_6.pin_p) annotation(Line(points = {{9.169227750337996,14.195941339828892},{9.117388253721856,7.107722440551875}},color = {0,0,255}));
+    connect(zeroLoss_6.pin_n,zeroLoss_7.pin_p) annotation(Line(points = {{9.117388253721856,-12.892277559448125},{9.15713899279946,-20.20124629602344}},color = {0,0,255}));
+    connect(zeroLoss_7.pin_n,zeroLoss_8.pin_p) annotation(Line(points = {{9.15713899279946,-40.20124629602344},{9.15713899279946,-47.23903914029593},{9.270761753886973,-47.23903914029593}},color = {0,0,255}));
+    connect(signalVoltage2.n,signalVoltage3.n) annotation(Line(points = {{9.077637514644215,61.37080291219429},{9.077637514644215,66.39121898244316},{61.08840039726921,66.39121898244316},{61.08840039726921,61.36016855302234}},color = {0,0,255}));
+    connect(signalVoltage.p,zeroLoss_.pin_p[1]) annotation(Line(points = {{-22.421178990530848,41.41037775804317},{-22.421178990530848,37.5955255304676},{-22.32958875483706,37.5955255304676},{-22.32958875483706,34.23551618567777}},color = {0,0,255}));
+    connect(zeroLoss_.pin_n,zeroLoss_2.pin_p) annotation(Line(points = {{-22.32958875483706,14.235516185677767},{-22.3814282514532,7.147297286400757}},color = {0,0,255}));
+    connect(zeroLoss_2.pin_n,zeroLoss_3.pin_p) annotation(Line(points = {{-22.3814282514532,-12.852702713599243},{-22.341677512375583,-20.161671450174566}},color = {0,0,255}));
+    connect(zeroLoss_3.pin_n,zeroLoss_4.pin_p) annotation(Line(points = {{-22.341677512375583,-40.161671450174566},{-22.341677512375583,-47.199464294447054},{-22.228054751288084,-47.199464294447054}},color = {0,0,255}));
+    connect(signalVoltage.n,signalVoltage2.n) annotation(Line(points = {{-22.421178990530848,61.41037775804317},{-22.421178990530848,66.441428187464},{9.077637514644215,66.441428187464},{9.077637514644215,61.37080291219429}},color = {0,0,255}));
+    connect(zeroLoss_8.pin_n,zeroLoss_11.pin_n) annotation(Line(points = {{9.270761753886978,-67.23903914029593},{9.270761753886978,-74.1241504869156},{61.281524636511975,-74.1241504869156},{61.281524636511975,-67.24967349946789}},color = {0,0,255}));
+    connect(zeroLoss_4.pin_n[1],pin_p2) annotation(Line(points = {{-22.22805475128808,-67.19946429444705},{-22.22805475128808,-74.20477329796421},{-67.9114952432376,-74.20477329796421}},color = {0,0,255}));
+    connect(zeroLoss_8.pin_n,zeroLoss_4.pin_n) annotation(Line(points = {{9.270761753886978,-67.23903914029593},{9.270761753886978,-74.0442603900847},{-22.22805475128808,-74.0442603900847},{-22.22805475128808,-67.19946429444705}},color = {0,0,255}));
+    connect(signalVoltage.n,pin_n) annotation(Line(points = {{-22.421178990530844,61.41037775804317},{-22.421178990530844,66.44568325158113},{-67.32961487853666,66.44568325158113}},color = {0,0,255}));
+    
+    annotation(Icon(coordinateSystem(preserveAspectRatio = false,extent = {{-100.0,-100.0},{100.0,100.0}}),graphics = {Rectangle(lineColor={0,0,0},fillColor={230,230,230},fillPattern=FillPattern.Solid,extent={{-100.0,-100.0},{100.0,100.0}}),Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+end Parallel_circuit;
