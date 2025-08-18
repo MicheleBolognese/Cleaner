@@ -18,11 +18,11 @@ model CoolStack "PEMFC stack model with cooling"
       NB = 1));
   
   parameter Real alpha = 0.5 "Charge transfer coefficient" annotation (Dialog(enable = enable_setting,tab = "Substack",group = "Characteristics and polarization"));
-  input Real c1(unit = "V/K", start = 0.85e-3) "Voltage derivative by temperature" annotation (Dialog(enable = enable_setting,tab = "Substack",group = "Characteristics and polarization"));
-  input .Modelica.Units.SI.CurrentDensity j_0 (start = 1) "Exchange current density for activation loss" annotation (Dialog(enable = enable_setting,tab = "Substack",group = "Characteristics and polarization"));
-  input .Modelica.Units.SI.CurrentDensity j_loss (start = 100) "Activation current density loss" annotation (Dialog(enable = enable_setting,tab = "Substack",group = "Characteristics and polarization"));
-  input .Modelica.Units.SI.Voltage m_conc (start = 3e-4) "Pre-exponential factor for concentration loss" annotation (Dialog(enable = enable_setting,tab = "Substack",group = "Characteristics and polarization"));
-  input Real n_conc (unit = "m2/A", start = 3.2e-4) " Exponential factor for concentration loss" annotation(Dialog(group = "Characteristics and polarization",tab = "Substack",enable = enable_setting));
+  input Real c1(unit = "V/K", start = 0.85e-3) = 4.1821e-3 "Voltage derivative by temperature" annotation (Dialog(enable = enable_setting,tab = "Substack",group = "Characteristics and polarization"));
+  input .Modelica.Units.SI.CurrentDensity j_0 (start = 1) = 1 "Exchange current density for activation loss" annotation (Dialog(enable = enable_setting,tab = "Substack",group = "Characteristics and polarization"));
+  input .Modelica.Units.SI.CurrentDensity j_loss (start = 100) = 1 "Activation current density loss" annotation (Dialog(enable = enable_setting,tab = "Substack",group = "Characteristics and polarization"));
+  input .Modelica.Units.SI.Voltage m_conc (start = 3e-4) = 5.7073e-4 "Pre-exponential factor for concentration loss" annotation (Dialog(enable = enable_setting,tab = "Substack",group = "Characteristics and polarization"));
+  input Real n_conc (unit = "m2/A", start = 3.2e-4) = 1.0299e-4 " Exponential factor for concentration loss" annotation(Dialog(group = "Characteristics and polarization",tab = "Substack",enable = enable_setting));
 
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics), Documentation(revisions="<html>
