@@ -114,28 +114,28 @@ partial model PartialCellTransport "General fuel cell membrane interface with ad
     final CF_0 = CF_0_gasDiffusion,
     final CF_N = CF_N_gasDiffusion) annotation (Placement(transformation(extent={{-48.80090599247191,94.02866613914978},{-28.80090599247191,114.02866613914978}},rotation = 0.0,origin = {0.0,0.0})));
 
-/*
-  replaceable model WaterPermeation = .PEMFCModel.Membrane.MassTransport.WaterPermeation.ZeroFlow constrainedby
-    .PEMFCModel.Membrane.MassTransport.Templates.PartialWaterPermeation(final enableInternal = false) "Water permeation through membrane" annotation(choicesAllMatching = true, Dialog(tab = "Mass transport", group = "Water transport"));
 
-  WaterPermeation waterPermeation(
-    redeclare package Medium_an = Medium_an,
-    redeclare package Medium_cath = Medium_cath,
-    final N = N,
-    final n_cell = n_cell,
-    final A_cell = A_cell,
-    final z = z,
-    final rho_dry_m = rho_dry_m,
-    final EW_m = EW_m,
-    final p_an_partial = p_an_partial,
-    final p_cath_partial = p_cath_partial,
-    final T_an = T_an,
-    final T_cath = T_cath,
-    final T_cell = T_cell,
-    final iH2O_an = iH2O_an[1],
-    final iH2O_cath = iH2O_cath[1],
-    final lambda = waterContent.lambda) annotation (Placement(transformation(extent={{-60,80},{-40,100}})));
-*/
+//   replaceable model WaterPermeation = .PEMFCModel.Membrane.MassTransport.WaterPermeation.ZeroFlow constrainedby
+//     .PEMFCModel.Membrane.MassTransport.Templates.PartialWaterPermeation(final enableInternal = false) "Water permeation through membrane" annotation(choicesAllMatching = true, Dialog(tab = "Mass transport", group = "Water transport"));
+
+//   WaterPermeation waterPermeation(
+//     redeclare package Medium_an = Medium_an,
+//     redeclare package Medium_cath = Medium_cath,
+//     final N = N,
+//     final n_cell = n_cell,
+//     final A_cell = A_cell,
+//     final z = z,
+//     final rho_dry_m = rho_dry_m,
+//     final EW_m = EW_m,
+//     final p_an_partial = p_an_partial,
+//     final p_cath_partial = p_cath_partial,
+//     final T_an = T_an,
+//     final T_cath = T_cath,
+//     final T_cell = T_cell,
+//     final iH2O_an = iH2O_an[1],
+//     final iH2O_cath = iH2O_cath[1],
+//     final lambda = waterContent.lambda) annotation (Placement(transformation(extent={{-60,80},{-40,100}})));
+
   
   final .Modelica.Blocks.Interfaces.RealOutput mX_flow_an_transport[N, Medium_an.nS](each unit = "kg/s") "Water/gas transport at anode side (> 0 from anode to cathode)";
   final .Modelica.Blocks.Interfaces.RealOutput mX_flow_cath_transport[N, Medium_cath.nS](each unit = "kg/s") "Water/gas transport at cathode side (> 0 from cathode to anode)";

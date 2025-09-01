@@ -1,0 +1,24 @@
+{
+  "stickies" : [ ],
+  "stickyPositions" : [ ],
+  "plots" : [ {
+    "variables" : [ "V_cell.showNumber", "V_cell_exp.y[1]" ],
+    "colors" : {
+      "V_cell.showNumber" : [ "#1f77b4" ],
+      "V_cell_exp.y[1]" : [ "#ff7f0e" ]
+    },
+    "x" : -119.36,
+    "y" : 51.37,
+    "width" : 500.0,
+    "height" : 300.0,
+    "title" : "Plot 1",
+    "config" : {
+      "type" : "LINE",
+      "layout" : { },
+      "common" : { },
+      "variables" : { }
+    }
+  } ],
+  "version" : "1",
+  "name" : "vOLTAGE"
+}

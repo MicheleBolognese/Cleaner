@@ -189,7 +189,7 @@ equation
   connect(humidification_cath.x_wet_in,flowCathode.X_in) annotation(Line(points = {{-116.18859441508964,-20.08304148930943},{-110,-20.08304148930943},{-110,-4},{-86,-4},{-86,-10}},color = {0,0,127}));
   connect(ramp_m_flow_water.y,sourceW.m_flow_in) annotation(Line(points = {{-70.28038185111427,-42.54436907142595},{-61.95890105565714,-42.54436907142595},{-61.95890105565714,-30},{-54,-30}},color = {0,0,127}));
   connect(humidification_an.x_wet_in,sinkAnode.X_in) annotation(Line(points = {{-116.18859441508964,27.91695851069057},{-110.18859441508964,27.91695851069057},{-110.18859441508964,84},{83.22993225215629,84},{83.22993225215629,39.6149661260782}},color = {0,0,127}));
-  connect(humidification_cath.x_wet_in,sinkCathode.X_in) annotation(Line(points = {{-116.18859441508964,-20.08304148930943},{-110,-20.08304148930943},{-110,16},{83.61496612607814,16},{83.61496612607814,-10.38503387392182}},color = {0,0,127}));
+  connect(humidification_cath.x_wet_in,sinkCathode.X_in) annotation(Line(points = {{-116.19,-20.08},{-110,-20.08},{-110,16},{83.61,16},{83.61,-10.39}},color = {0,0,127}));
   connect(coolStack.pin_n,ground.p) annotation(Line(points = {{4,34.5},{16,34.5},{16,64},{36,64}},color = {0,0,255}));      
   connect(p_an_out.y,sinkAnode.p_in) annotation(Line(points = {{-31,128},{95.22993225215629,128},{95.22993225215629,39.6149661260782}},color = {0,0,127}));
   connect(p_cath_out.y,sinkCathode.p_in) annotation(Line(points = {{-33,-130},{112,-130},{112,-4.38503387392182},{95.61496612607814,-4.38503387392182},{95.61496612607814,-10.38503387392182}},color = {0,0,127}));

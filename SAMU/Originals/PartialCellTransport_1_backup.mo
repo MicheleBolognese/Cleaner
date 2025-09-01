@@ -1,8 +1,8 @@
-within SAMU;
+within SAMU.Originals;
 
-partial model PartialCellTransport_1 "General fuel cell membrane interface with additional transport model"
+partial model PartialCellTransport_1_backup "General fuel cell membrane interface with additional transport model"
 
-  //extends .PEMFCModel.Membrane.Templates.PartialCell;
+  extends .PEMFCModel.Membrane.Templates.PartialCell;
 
   parameter .Modelica.Units.SI.Length z = 20e-6 "Membrane thickness" annotation (Dialog(enable = enable_setting, group = "Membrane characteristics"));
   parameter .Modelica.Units.SI.Density rho_dry_m = 1980 "Dry membrane density" annotation (Dialog(enable = enable_setting, group = "Membrane characteristics"));
@@ -35,7 +35,7 @@ partial model PartialCellTransport_1 "General fuel cell membrane interface with 
     final iH2O_an = iH2O_an[1],
     final iH2O_cath = iH2O_cath[1],
     final CF_0 = CF_0_waterContent,
-    final CF_N = CF_N_waterContent) annotation (Placement(transformation(extent={{-108.75609436022503,94.04853189230951},{-88.75609436022503,114.04853189230951}},rotation = 0.0,origin = {0.0,0.0})));
+    final CF_N = CF_N_waterContent) annotation (Placement(transformation(extent={{-108.0,94.0},{-88.0,114.0}},rotation = 0.0,origin = {0.0,0.0})));
   
   replaceable model WaterDiffusion = .PEMFCModel.Membrane.MassTransport.WaterDiffusion.ZeroFlow constrainedby .PEMFCModel.Membrane.MassTransport.Templates.PartialWaterDiffusion(final enableInternal = false) "Water diffusion through membrane" annotation(choicesAllMatching = true, Dialog(tab = "Mass transport", group = "Water transport",enable = true));
   
@@ -62,7 +62,7 @@ partial model PartialCellTransport_1 "General fuel cell membrane interface with 
     final lambda_an = waterContent.lambda_an,
     final lambda_cath = waterContent.lambda_cath,
     final CF_0 = CF_0_waterDiffusion,
-    final CF_N = CF_N_waterDiffusion) annotation (Placement(transformation(extent={{-88.7413087329926,94.04853189230951},{-68.7413087329926,114.04853189230951}},rotation = 0.0,origin = {0.0,0.0})));
+    final CF_N = CF_N_waterDiffusion) annotation (Placement(transformation(extent={{-88.0,94.0},{-68.0,114.0}},rotation = 0.0,origin = {0.0,0.0})));
 
   replaceable model ElectroOsmoticDrag = .PEMFCModel.Membrane.MassTransport.ElectroOsmoticDrag.ZeroFlow constrainedby .PEMFCModel.Membrane.MassTransport.Templates.PartialElectroOsmoticDrag(final enableInternal = false) "Electro-osmotic drag through membrane" annotation (choicesAllMatching = true, Dialog(tab = "Mass transport", group = "Water transport",enable = true));
 
@@ -212,4 +212,4 @@ Setting <span style=\"font-family: Courier New;\">useTransport=false</span> will
 Copyright &copy; 2004-2024, MODELON AB <br /> The use of this software component is regulated by the licensing conditions for Modelon Libraries. <br />This copyright notice must, unaltered, accompany all components that are derived from, copied from, <br />or by other means have their origin from any Modelon Library.
 </html>"));
 
-end PartialCellTransport_1;
+end PartialCellTransport_1_backup;

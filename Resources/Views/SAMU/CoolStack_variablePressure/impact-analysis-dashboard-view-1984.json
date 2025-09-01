@@ -1,7 +1,30 @@
 {
   "stickies" : [ ],
   "stickyPositions" : [ ],
-  "plots" : [ ],
+  "plots" : [ {
+    "variables" : [ "V_cell_exp.y[1]", "V_cell.showNumber" ],
+    "independentVariable" : "time",
+    "x" : 0.0,
+    "y" : 0.0,
+    "width" : 11.0,
+    "height" : 5.0,
+    "title" : "analyze-dashboard-item-c777b76c-5cba-4a35-82cd-2bcf0363c01e",
+    "config" : {
+      "type" : "LINE",
+      "layout" : {
+        "title" : {
+          "text" : "Plot 1"
+        }
+      },
+      "common" : { },
+      "variables" : { }
+    },
+    "axes" : {
+      "x" : {
+        "type" : "default"
+      }
+    }
+  } ],
   "globalConfig" : {
     "plot" : {
       "common" : {
