@@ -2,69 +2,65 @@ within SAMU;
 
 partial model PartialCellTransport_humidifier "General fuel cell membrane interface with additional transport model"
 
-  extends SAMU.PartialCell_humidifier;
+  extends SAMU.PartialCell_orig;
 
   parameter .Modelica.Units.SI.Length z = 20e-6 "Membrane thickness" annotation (Dialog(enable = enable_setting, group = "Membrane characteristics"));
   parameter .Modelica.Units.SI.Density rho_dry_m = 1980 "Dry membrane density" annotation (Dialog(enable = enable_setting, group = "Membrane characteristics"));
-  parameter .Modelica.Units.SI.MolarMass EW_m = 1.1 "Membrane equivalent weight" annotation (Dialog(enable = enable_setting, group = "Membrane characteristics"));
   
   parameter String diffusiveSpecies[:] = fill("",0) "Species diffusing through membrane" annotation(Dialog(enable = enable_setting, group = "Membrane characteristics"));
 
-  .Modelica.Units.SI.Pressure p_an_partial[N, nS_an] = {{max(.Modelica.Constants.eps, p_an[i]*y_an[i, j]) for j in 1:nS_an} for i in 1:N} "Partial pressure of each chemical species in each node at membrane-anode interface ";
-  .Modelica.Units.SI.Pressure p_cath_partial[N, nS_cath] = {{max(.Modelica.Constants.eps, p_cath[i]*y_cath[i, j]) for j in 1:nS_cath} for i in 1:N} "Partial pressure of each chemical species in each node at membrane-cathode interface";
+  Modelica.Units.SI.Pressure p_an_partial[N,Medium_an.nS]={{max(Modelica.Constants.eps, anode[i].p*y_an[i, j]) for j in 1:
+      Medium_an.nS} for i in 1:N} "Anode | Species partial pressure";
+  Modelica.Units.SI.Pressure p_cath_partial[N,Medium_cath.nS]={{max(Modelica.Constants.eps, cathode[i].p*y_cath[i, j]) for j in 1:
+      Medium_cath.nS} for i in 1:N} "Cathode | Species partial pressure";
 
-  replaceable model WaterContent = .PEMFCModel.Membrane.MassTransport.WaterContent.Gandomi constrainedby .PEMFCModel.Membrane.MassTransport.Templates.PartialWaterContent(final enableInternal = false) annotation (Dialog(tab = "Mass transport", group = "General properties",enable = true));
+  replaceable model WaterContent = FuelCell.Membranes.MassTransport.WaterContent.Gandomi constrainedby FuelCell.Membranes.MassTransport.Templates.PartialWaterContent(final enableInternal = false) annotation (Dialog(tab = "Mass transport", group = "General properties",enable = true));
   
   parameter Real CF_0_waterContent = 1.0 "Calibration factor for water content" annotation(Dialog(tab = "Mass transport", group = "General properties",enable =  true));
   parameter Real CF_N_waterContent[N] = fill(CF_0_waterContent, N) "Calibration factor for water content (set if non-uniform)" annotation(Dialog(tab = "Mass transport", group = "General properties",enable = true));
   
-  WaterContent waterContent(
-    redeclare package Medium_an = Medium_an,
-    redeclare package Medium_cath = Medium_cath,
-    final N = N,
-    final n_cell = n_cell,
-    final A_cell = A_cell,
-    final z = z,
-    final rho_dry_m = rho_dry_m,
-    final EW_m = EW_m,
-    final p_an_partial = p_an_partial,
-    final p_cath_partial = p_cath_partial,
-    final T_an = T_an,
-    final T_cath = T_cath,
-    final T_cell = T_cell,
-    final iH2O_an = iH2O_an[1],
-    final iH2O_cath = iH2O_cath[1],
-    final CF_0 = CF_0_waterContent,
-    final CF_N = CF_N_waterContent) annotation (Placement(transformation(extent={{-108.75609436022503,94.04853189230951},{-88.75609436022503,114.04853189230951}},rotation = 0.0,origin = {0.0,0.0})));
+  WaterContent waterContent(  
+    redeclare package Medium_an=Medium_an,
+    redeclare package Medium_cath=Medium_cath,
+    N=N,
+    n_cell=n_cell,
+    A_cell=A_cell,
+    z=z,
+    I_cell=fill(0,N),
+
+    p_an_partial=p_an_partial,
+    p_cath_partial=p_cath_partial,
+    T_an=T_an,
+    T_cath=T_cath,
+    T_cell=T_cell,
+    iH2O_an=iH2O_an[1],
+    iH2O_cath=iH2O_cath[1]) annotation (Placement(transformation(extent={{-100,80},
+            {-80,100}})));
   
-  replaceable model WaterDiffusion = .PEMFCModel.Membrane.MassTransport.WaterDiffusion.ZeroFlow constrainedby .PEMFCModel.Membrane.MassTransport.Templates.PartialWaterDiffusion(final enableInternal = false) "Water diffusion through membrane" annotation(choicesAllMatching = true, Dialog(tab = "Mass transport", group = "Water transport",enable = true));
+  replaceable model WaterDiffusion =    FuelCell.Membranes.MassTransport.WaterDiffusion.ZeroFlow       constrainedby FuelCell.Membranes.MassTransport.Templates.PartialWaterDiffusion(final enableInternal = false) "Water diffusion through membrane" annotation(choicesAllMatching = true, Dialog(tab = "Mass transport", group = "Water transport",enable = true));
   
   parameter Real CF_0_waterDiffusion = 1.0 "Calibration factor for water diffusion" annotation(Dialog(tab = "Mass transport", group = "Water transport",enable =  true));
   parameter Real CF_N_waterDiffusion[N] = fill(CF_0_waterDiffusion, N) "Calibration factor for water diffusion (set if non-uniform)" annotation(Dialog(tab = "Mass transport", group = "Water transport",enable = true));  
 
-  WaterDiffusion waterDiffusion(
-    redeclare package Medium_an = Medium_an,
-    redeclare package Medium_cath = Medium_cath,
-    final N = N,
-    final n_cell = n_cell,
-    final A_cell = A_cell,
-    final z = z,
-    final rho_dry_m = rho_dry_m,
-    final EW_m = EW_m,
-    final p_an_partial = p_an_partial,
-    final p_cath_partial = p_cath_partial,
-    final T_an = T_an,
-    final T_cath = T_cath,
-    final T_cell = T_cell,
-    final iH2O_an = iH2O_an[1],
-    final iH2O_cath = iH2O_cath[1],
-    final lambda = waterContent.lambda,
-    final lambda_an = waterContent.lambda_an,
-    final lambda_cath = waterContent.lambda_cath,
-    final CF_0 = CF_0_waterDiffusion,
-    final CF_N = CF_N_waterDiffusion) annotation (Placement(transformation(extent={{-88.7413087329926,94.04853189230951},{-68.7413087329926,114.04853189230951}},rotation = 0.0,origin = {0.0,0.0})));
+  WaterDiffusion waterDiffusion( redeclare package Medium_an=Medium_an,
+    redeclare package Medium_cath=Medium_cath,
+    N=N,
+    n_cell=n_cell,
+    A_cell=A_cell,
+    z=z,
+    p_an_partial=p_an_partial,
+    p_cath_partial=p_cath_partial,
+    T_an=T_an,
+    I_cell=fill(0,N),
 
-  replaceable model ElectroOsmoticDrag = .PEMFCModel.Membrane.MassTransport.ElectroOsmoticDrag.ZeroFlow constrainedby .PEMFCModel.Membrane.MassTransport.Templates.PartialElectroOsmoticDrag(final enableInternal = false) "Electro-osmotic drag through membrane" annotation (choicesAllMatching = true, Dialog(tab = "Mass transport", group = "Water transport",enable = true));
+    T_cath=T_cath,
+    T_cell=T_cell,
+    iH2O_an=iH2O_an[1],
+    iH2O_cath=iH2O_cath[1],
+    lambda=waterContent.lambda,
+    f_w=waterContent.f_w) annotation (Placement(transformation(extent={{-80,80},{-60,100}})));
+
+
 
 //   parameter Real CF_0_eod = 1.0 "Calibration factor for electro-osmotic drag" annotation(Dialog(tab = "Mass transport", group = "Water transport",enable = true));
 //   parameter Real CF_N_eod[N] = fill(CF_0_eod, N) "Calibration factor for electro-osmotic drag (set if non-uniform)" annotation(Dialog(tab = "Mass transport", group = "Water transport",enable = true));    
@@ -90,30 +86,28 @@ partial model PartialCellTransport_humidifier "General fuel cell membrane interf
 //     final CF_0 = CF_0_eod,
 //     final CF_N = CF_N_eod) annotation (Placement(transformation(extent={{-69.0336325774397,94.04853189230954},{-49.033632577439704,114.04853189230954}},rotation = 0.0,origin = {0.0,0.0})));
 
-  replaceable model GasDiffusion = .PEMFCModel.Membrane.MassTransport.GasDiffusion.ZeroFlow constrainedby .PEMFCModel.Membrane.MassTransport.Templates.PartialGasDiffusion (final enableInternal = false) "Gas permeation through membrane" annotation (choicesAllMatching = true, Dialog(tab = "Mass transport", group = "Gas diffusion",enable = true));
+  replaceable model GasDiffusion = FuelCell.Membranes.MassTransport.GasDiffusion.ZeroFlow constrainedby FuelCell.Membranes.MassTransport.Templates.PartialGasDiffusion (final enableInternal = false) "Gas permeation through membrane" annotation (choicesAllMatching = true, Dialog(tab = "Mass transport", group = "Gas diffusion",enable = true));
   
   parameter Real CF_0_gasDiffusion[size(diffusiveSpecies,1)] = fill(1.0,size(diffusiveSpecies,1)) "Calibration factor for each diffusive sepcies" annotation(Dialog(tab = "Mass transport", group = "Gas diffusion",enable = true));
   parameter Real CF_N_gasDiffusion[N, size(diffusiveSpecies,1)] = fill(CF_0_gasDiffusion, N) "Calibration factor for each diffusive species (set if non-uniform)" annotation(Dialog(tab = "Mass transport", group = "Gas diffusion",enable = true));  
 
   GasDiffusion gasDiffusion(
-    redeclare package Medium_an = Medium_an,
-    redeclare package Medium_cath = Medium_cath,
-    final N = N,
-    final n_cell = n_cell,
-    final A_cell = A_cell,
-    final z = z,
-    final rho_dry_m = rho_dry_m,
-    final EW_m = EW_m,
-    final p_an_partial = p_an_partial,
-    final p_cath_partial = p_cath_partial,
-    final T_an = T_an,
-    final T_cath = T_cath,
-    final T_cell = T_cell,
-    final diffusiveSpecies = diffusiveSpecies,
-    final lambda = waterContent.lambda,
-    final f_w = waterContent.f_w,
-    final CF_0 = CF_0_gasDiffusion,
-    final CF_N = CF_N_gasDiffusion) annotation (Placement(transformation(extent={{-68.0,94.0},{-48.0,114.0}},rotation = 0.0,origin = {0.0,0.0})));
+    redeclare package Medium_an=Medium_an,
+    redeclare package Medium_cath=Medium_cath,
+    N=N,
+    n_cell=n_cell,
+    A_cell=A_cell,
+    z=z,
+    I_cell=fill(0,N),
+
+    p_an_partial=p_an_partial,
+    p_cath_partial=p_cath_partial,
+    T_an=T_an,
+    T_cath=T_cath,
+    T_cell=T_cell,
+    lambda=waterContent.lambda,
+    f_w=waterContent.f_w) annotation (Placement(transformation(extent={{-100,60},
+            {-80,80}})));
 
 /*
   replaceable model WaterPermeation = .PEMFCModel.Membrane.MassTransport.WaterPermeation.ZeroFlow constrainedby
@@ -159,8 +153,8 @@ protected
   
   end for;
 
-protected
-  Modelica.Units.SI.SpecificEnthalpy h_fg[N] "Enthalpy of vaporization for each node";
+/*protected
+  Modelica.Units.SI.SpecificEnthalpy h_fg[N] "Enthalpy of vaporization for each node";*/
 
 
 equation
@@ -168,7 +162,7 @@ equation
   // Mass flow rates of each chemical species to mass flow ports per each stack node, excluding reacting species flows
   for i in 1:N loop
     
-    for j in 1:nS_an loop
+    for j in 1:Medium_an.nS loop
       
       if j == iH2O_an[1] then
 
@@ -180,7 +174,7 @@ equation
       
       end if;
     end for;
-    for j in 1:nS_cath loop
+    for j in 1:Medium_cath.nS loop
       
       if j == iH2O_cath[1] then
         
@@ -195,7 +189,7 @@ equation
     end for;
   
   end for;
-  // HH: Add latent heat transfer for water transport
+ /* // HH: Add latent heat transfer for water transport
   for i in 1:N loop
     // Calculate enthalpy of vaporization at membrane temperature
     h_fg[i] = .Modelica.Media.Water.IF97_Utilities.hv_p(satPressure(T_cell[i])) - .Modelica.Media.Water.IF97_Utilities.hl_p(satPressure(T_cell[i]));
@@ -203,7 +197,7 @@ equation
     // Add latent heat to enthalpy flows (water diffusion > 0 means dry to wet side)
     port_an[i].h_outflow = inStream(port_an[i].h_inflow) - waterDiffusion.m_flow[i] * h_fg / max(1e-6, abs(port_an[i].m_flow));
     port_cath[i].h_outflow = inStream(port_cath[i].h_inflow) + waterDiffusion.m_flow[i] * h_fg / max(1e-6, abs(port_cath[i].m_flow));
-  end for;
+  end for;*/
 
   annotation (Documentation(info="<html>
 <p>Membrane humidifier model with detailed water transport physics. This model has been modified from the original fuel cell transport model to serve as a passive membrane humidifier.</p>

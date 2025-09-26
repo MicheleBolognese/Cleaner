@@ -1,5 +1,5 @@
 within PEMFCModel.Membrane.Templates;
-partial model PartialCell "General fuel cell membrane interface"
+model PartialCell "General fuel cell membrane interface"
 
   replaceable package Medium_an = .FuelCell.Media.PreDefined.IdealGases.NASAReformate constrainedby 
     .FuelCell.Media.Templates.ReactionGas "Anodic medium" annotation(choicesAllMatching,Dialog(enable = enable_setting));
