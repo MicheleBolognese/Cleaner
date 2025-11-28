@@ -1,7 +1,7 @@
-within SAMU;
+within SAMU.Backup_preM.MembraneHumi_Mike;
 
 model Empirical_humidificatore_def "PEMFC | Empirical models"
-  extends SAMU.PartialMembrane_hgumi(
+  extends .SAMU.Backup_preM.MembraneHumi_Mike.PartialMembrane_hgumi(
     final an_names={"H2","H2O"},
     final cath_names={"O2","H2O"});
 

@@ -1,4 +1,4 @@
-within SAMU;
+within SAMU.Backup_preM.MembraneHumi_Mike;
 
 model DistributedPipe_humidifier
   "Example with distributed pipes, different discretization numbers"
@@ -8,7 +8,7 @@ model DistributedPipe_humidifier
     .FuelCell.Pipes.FlowChannel_mass flowChannel_mass3 annotation(Placement(transformation(extent = {{-11.2,10.84},{11.2,-10.84}},origin = {10.66,-130.0},rotation = -180.0)));
     .FuelCell.Interfaces.WaterVolumePort waterVolumePort annotation(Placement(transformation(extent = {{60.66,-137.34},{75.34,-122.66}},origin = {0.0,0.0},rotation = 0.0)));
     .FuelCell.Interfaces.WaterFlowPort waterFlowPort annotation(Placement(transformation(extent = {{-51.34,-137.34},{-36.66,-122.66}},origin = {0.0,0.0},rotation = 0.0)));
-    .SAMU.Empirical_humidificatore_def empirical_humidificatore_def annotation(Placement(transformation(extent = {{2.0,-116.0},{22.0,-96.0}},origin = {0.0,0.0},rotation = 0.0)));
+    .SAMU.Backup_preM.MembraneHumi_Mike.Empirical_humidificatore_def empirical_humidificatore_def annotation(Placement(transformation(extent = {{2.0,-116.0},{22.0,-96.0}},origin = {0.0,0.0},rotation = 0.0)));
 equation
     connect(flowChannel_mass.portA,volumePort) annotation(Line(points = {{-0.18,-76},{-44,-76}},color = {255,128,0}));
     connect(flowChannel_mass.portB,flowPort) annotation(Line(points = {{20.18,-76},{68,-76}},color = {255,128,0}));

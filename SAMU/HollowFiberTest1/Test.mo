@@ -1,0 +1,38 @@
+within SAMU.HollowFiberTest1;
+model Test
+    .SAMU.HollowFiberTest1.DiscretizedGasGasHumidifier discretizedGasGasHumidifier(n = 3) annotation(Placement(transformation(extent = {{-26.0,4.0},{-6.0,24.0}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sources.CondensingGasFlowBoundary wetSource(m_flow = 0.003,T = 343.15,X = {0.2169,0.0005,0.0101,0.5914,0.1812}) annotation(Placement(transformation(extent = {{-96.0,-28.0},{-76.0,-8.0}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sources.CondensingGasFlowBoundary drySource(m_flow = 0.003,X = {0.0046,0.0006,0.0128,0.7516,0.2303},T = 294.15) annotation(Placement(transformation(extent = {{62.0,-28.0},{42.0,-8.0}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sources.CondensingGasPressureBoundary drySink(p = 1.3e5) annotation(Placement(transformation(extent = {{-96.0,28.0},{-76.0,48.0}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sources.CondensingGasPressureBoundary wetSink(p = 1.3e5) annotation(Placement(transformation(extent = {{62.0,26.0},{42.0,46.0}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sensors.CondensingGasMultiDisplaySensor condensingGasMultiDisplaySensor annotation(Placement(transformation(extent = {{-66.0,-8.0},{-46.0,-28.0}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sensors.CondensingGasMultiDisplaySensor condensingGasMultiDisplaySensor2 annotation(Placement(transformation(extent = {{9.0,27.0},{29.0,47.0}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sensors.CondensingGasMultiDisplaySensor condensingGasMultiDisplaySensor3 annotation(Placement(transformation(extent = {{30.0,-8.0},{10.0,-28.0}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sensors.CondensingGasMultiDisplaySensor condensingGasMultiDisplaySensor4 annotation(Placement(transformation(extent = {{-45.0,29.0},{-65.0,49.0}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sensors.MultiDisplay_phTmdot multiDisplay_phTmdot(displayUnits = true,redeclare replaceable package Medium = .FuelCell.Media.PreDefined.CondensingGases.CondensingMoistAir) annotation(Placement(transformation(extent = {{-85.55,-63.0},{-63.87,-41.32}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sensors.AirCompositionDisplay airCompositionDisplay(displayMassUnit = true,redeclare replaceable package Medium = .FuelCell.Media.PreDefined.CondensingGases.CondensingMoistAir) annotation(Placement(transformation(extent = {{-52.06,-44.21},{-30.38,-62.63}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sensors.MultiDisplay_phTmdot multiDisplay_phTmdot2(displayUnits = true,redeclare replaceable package Medium = .FuelCell.Media.PreDefined.CondensingGases.CondensingMoistAir) annotation(Placement(transformation(extent = {{-3.81,-65.79},{17.87,-44.11}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sensors.AirCompositionDisplay airCompositionDisplay2(displayMassUnit = true,redeclare replaceable package Medium = .FuelCell.Media.PreDefined.CondensingGases.CondensingMoistAir) annotation(Placement(transformation(extent = {{30.29,-46.38},{51.97,-64.8}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sensors.MultiDisplay_phTmdot multiDisplay_phTmdot3(displayUnits = true,redeclare replaceable package Medium = .FuelCell.Media.PreDefined.CondensingGases.CondensingMoistAir) annotation(Placement(transformation(extent = {{-6.55,59.27},{15.13,80.95}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sensors.AirCompositionDisplay airCompositionDisplay3(displayMassUnit = true,redeclare replaceable package Medium = .FuelCell.Media.PreDefined.CondensingGases.CondensingMoistAir) annotation(Placement(transformation(extent = {{28.77,60.67},{50.45,79.09}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sensors.MultiDisplay_phTmdot multiDisplay_phTmdot4(displayUnits = true,redeclare replaceable package Medium = .FuelCell.Media.PreDefined.CondensingGases.CondensingMoistAir) annotation(Placement(transformation(extent = {{-87.55,59.17},{-65.87,80.85}},origin = {0.0,0.0},rotation = 0.0)));
+    .FuelCell.Sensors.AirCompositionDisplay airCompositionDisplay4(displayMassUnit = true,redeclare replaceable package Medium = .FuelCell.Media.PreDefined.CondensingGases.CondensingMoistAir) annotation(Placement(transformation(extent = {{-54.23,60.9},{-32.55,79.32}},origin = {0.0,0.0},rotation = 0.0)));
+equation
+    connect(condensingGasMultiDisplaySensor.portB,discretizedGasGasHumidifier.portA_sec) annotation(Line(points = {{-50,-18},{-39,-18},{-39,14},{-26,14}},color = {209,60,0}));
+    connect(condensingGasMultiDisplaySensor3.portB,discretizedGasGasHumidifier.portA_prim) annotation(Line(points = {{14,-18},{3,-18},{3,10},{-6,10}},color = {209,60,0}));
+    connect(discretizedGasGasHumidifier.portB_sec,condensingGasMultiDisplaySensor2.portA) annotation(Line(points = {{-6,14},{3,14},{3,37},{13,37}},color = {209,60,0}));
+    connect(condensingGasMultiDisplaySensor4.portA,discretizedGasGasHumidifier.portB_prim) annotation(Line(points = {{-49,39},{-38,39},{-38,18},{-26,18}},color = {209,60,0}));
+    connect(drySource.fluidPort,condensingGasMultiDisplaySensor3.portA) annotation(Line(points = {{43,-18},{26,-18}},color = {209,60,0}));
+    connect(wetSource.fluidPort,condensingGasMultiDisplaySensor.portA) annotation(Line(points = {{-77,-18},{-62,-18}},color = {209,60,0}));
+    connect(drySink.fluidPort,condensingGasMultiDisplaySensor4.portB) annotation(Line(points = {{-77,38},{-61,38},{-61,39}},color = {209,60,0}));
+    connect(condensingGasMultiDisplaySensor2.portB,wetSink.fluidPort) annotation(Line(points = {{25,37},{25,36},{43,36}},color = {209,60,0}));
+    connect(condensingGasMultiDisplaySensor4.u,multiDisplay_phTmdot4.y) annotation(Line(points = {{-55.05,39.05},{-55.05,52},{-76.71,52},{-76.71,70.01}},color = {0,0,0}));
+    connect(condensingGasMultiDisplaySensor4.u,airCompositionDisplay4.data) annotation(Line(points = {{-55.05,39.05},{-55.05,52},{-43.39,52},{-43.39,60.9}},color = {0,0,0}));
+    connect(condensingGasMultiDisplaySensor2.u,multiDisplay_phTmdot3.y) annotation(Line(points = {{19.05,37.05},{19.05,48},{4.29,48},{4.29,70.11}},color = {0,0,0}));
+    connect(condensingGasMultiDisplaySensor2.u,airCompositionDisplay3.data) annotation(Line(points = {{19.05,37.05},{19.05,48},{39.61,48},{39.61,60.67}},color = {0,0,0}));
+    connect(condensingGasMultiDisplaySensor3.u,multiDisplay_phTmdot2.y) annotation(Line(points = {{19.95,-18.05},{19.95,-54.95},{7.03,-54.95}},color = {0,0,0}));
+    connect(condensingGasMultiDisplaySensor3.u,airCompositionDisplay2.data) annotation(Line(points = {{19.95,-18.05},{19.95,-32.22},{41.13,-32.22},{41.13,-46.38}},color = {0,0,0}));
+    connect(airCompositionDisplay.data,condensingGasMultiDisplaySensor.u) annotation(Line(points = {{-41.22,-44.21},{-41.22,-31.13},{-55.95,-31.13},{-55.95,-18.05}},color = {0,0,0}));
+    connect(multiDisplay_phTmdot.y,condensingGasMultiDisplaySensor.u) annotation(Line(points = {{-74.71,-52.16},{-74.71,-35.1},{-55.95,-35.1},{-55.95,-18.05}},color = {0,0,0}));
+    annotation(Documentation(info="<html><p>dry air flows accordingly to Pollak - differently from how the humidifier model has been created by its authors - inside the shell.</p></html>"),Icon(coordinateSystem(preserveAspectRatio = false,extent = {{-100.0,-100.0},{100.0,100.0}}),graphics = {Rectangle(lineColor={0,0,0},fillColor={230,230,230},fillPattern=FillPattern.Solid,extent={{-100.0,-100.0},{100.0,100.0}}),Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+end Test;

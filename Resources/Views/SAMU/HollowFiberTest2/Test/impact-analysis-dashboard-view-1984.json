@@ -1,0 +1,40 @@
+{
+  "stickies" : [ ],
+  "stickyPositions" : [ ],
+  "plots" : [ {
+    "variables" : [ "discretizedGasGasHumidifier.m_trans[3]", "discretizedGasGasHumidifier.m_trans[2]", "discretizedGasGasHumidifier.m_trans[1]" ],
+    "independentVariable" : "time",
+    "x" : 0.0,
+    "y" : 0.0,
+    "width" : 4.0,
+    "height" : 2.0,
+    "title" : "analyze-dashboard-item-730e9a95-24ee-48a3-b39d-493bd9f5e8c4",
+    "config" : {
+      "type" : "LINE",
+      "layout" : {
+        "title" : {
+          "text" : "Plot 3"
+        },
+        "yaxis" : { }
+      },
+      "common" : { },
+      "variables" : { }
+    },
+    "axes" : {
+      "x" : {
+        "type" : "default"
+      }
+    }
+  } ],
+  "globalConfig" : {
+    "plot" : {
+      "common" : {
+        "showTitle" : true,
+        "colorMode" : "variable"
+      }
+    },
+    "experiment" : { }
+  },
+  "version" : "1",
+  "name" : "impact-analysis-dashboard-view-1984"
+}

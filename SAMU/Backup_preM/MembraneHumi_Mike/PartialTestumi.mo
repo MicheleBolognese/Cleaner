@@ -1,4 +1,4 @@
-within SAMU;
+within SAMU.Backup_preM.MembraneHumi_Mike;
 
 partial model PartialTestumi "Test equivalent circuit cell"
 
@@ -87,7 +87,7 @@ partial model PartialTestumi "Test equivalent circuit cell"
     each duration=300,
     each height=0,
     each offset=T_cathode) annotation (Placement(transformation(extent={{90,-40},{70,-20}}, rotation=0)));
-    replaceable SAMU.PartialCellTransport_humidifier cellMembrane constrainedby SAMU.PartialCellTransport_humidifier annotation(Placement(transformation(extent = {{-24,-22},{16,18}},rotation = 0,origin = {0,0})));
+    replaceable .SAMU.Backup_preM.MembraneHumi_Mike.PartialCellTransport_humidifier cellMembrane constrainedby .SAMU.Backup_preM.MembraneHumi_Mike.PartialCellTransport_humidifier annotation(Placement(transformation(extent = {{-24,-22},{16,18}},rotation = 0,origin = {0,0})));
 
 equation
   connect(airCompositionDisplay_cath.data, gasMultiDisplaySensor_cath[1].u)

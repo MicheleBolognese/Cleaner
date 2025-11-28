@@ -2,7 +2,7 @@ within SAMU.Backup_preM;
 
 partial model PartialCellTransport_humidifier "General fuel cell membrane interface with additional transport model"
 
-  extends .SAMU.PartialCell_humidifier;
+  extends .SAMU.Backup_preM.MembraneHumi_Mike.PartialCell_humidifier;
 
   parameter .Modelica.Units.SI.Length z = 20e-6 "Membrane thickness" annotation (Dialog(enable = enable_setting, group = "Membrane characteristics"));
   parameter .Modelica.Units.SI.Density rho_dry_m = 1980 "Dry membrane density" annotation (Dialog(enable = enable_setting, group = "Membrane characteristics"));

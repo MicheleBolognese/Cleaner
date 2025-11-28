@@ -1,13 +1,13 @@
-within SAMU;
+within SAMU.Backup_preM.MembraneHumi_Mike;
 
 model Empirical_humi_test "Test PEMFC Empirical membrane"
-  extends SAMU.PartialTestumi(
+  extends .SAMU.Backup_preM.MembraneHumi_Mike.PartialTestumi(
     T_anode=350,
     p_anode=300000,
     p_cathode=250000,
     X_anode=Medium_an.moleToMassFractions({0.65,0,0,0,0.35,0,0}, Medium_an.MMX),
     X_cathode=Medium_cath.moleToMassFractions({0,0,0.135,0.645,0.22}, Medium_cath.MMX),
-    redeclare SAMU.Empirical_humidificatore_def cellMembrane(
+    redeclare .SAMU.Backup_preM.MembraneHumi_Mike.Empirical_humidificatore_def cellMembrane(
       redeclare model WaterDiffusion =
           .FuelCell.Membranes.MassTransport.WaterDiffusion.Gandomi,
       redeclare model WaterPermeation =

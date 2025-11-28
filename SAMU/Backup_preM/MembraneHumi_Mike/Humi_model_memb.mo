@@ -1,7 +1,7 @@
-within SAMU;
+within SAMU.Backup_preM.MembraneHumi_Mike;
 
 model Humi_model_memb 
-  extends SAMU.PartialCellTransport_humidifier;
+  extends .SAMU.Backup_preM.MembraneHumi_Mike.PartialCellTransport_humidifier;
 
 equation
 

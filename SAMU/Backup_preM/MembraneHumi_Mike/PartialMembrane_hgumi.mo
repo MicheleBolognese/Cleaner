@@ -1,7 +1,7 @@
-within SAMU;
+within SAMU.Backup_preM.MembraneHumi_Mike;
 
 partial model PartialMembrane_hgumi "Cell membrane with underlying membrane equations and loss models added"
-  extends SAMU.PartialCellTransport_humidifier;
+  extends .SAMU.Backup_preM.MembraneHumi_Mike.PartialCellTransport_humidifier;
 
   parameter String an_names[:]={"H2"} "Required anode species | Used for index references (iAn)";
   parameter String cath_names[:]={"O2","H2O"} "Required anode species | Used for index references (iCath)";
