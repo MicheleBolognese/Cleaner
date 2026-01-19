@@ -1,6 +1,6 @@
-within SAMU.HollowFiberTest2;
+within SAMU.HollowFiberTest2_EB_inline;
 model Test
-    .SAMU.HollowFiberTest2.DiscretizedGasGasHumidifier discretizedGasGasHumidifier(n = 1) annotation(Placement(transformation(extent = {{-12.0,-4.0},{8.0,16.0}},origin = {0.0,0.0},rotation = 0.0)));
+    .SAMU.HollowFiberTest2_EB_inline.DiscretizedGasGasHumidifier discretizedGasGasHumidifier(n = 3) annotation(Placement(transformation(extent = {{-12.0,-4.0},{8.0,16.0}},origin = {0.0,0.0},rotation = 0.0)));
     .FuelCell.Sources.CondensingGasFlowBoundary drySource(T = 298.15,X = {0.005,0.001,0.013,0.752,0.23},m_flow = 0.005) annotation(Placement(transformation(extent = {{-92.0,-32.0},{-72.0,-12.0}},origin = {0.0,0.0},rotation = 0.0)));
     .FuelCell.Sources.CondensingGasPressureBoundary drySink(p = 131722) annotation(Placement(transformation(extent = {{86.0,24.0},{66.0,44.0}},origin = {0.0,0.0},rotation = 0.0)));
     .FuelCell.Sources.CondensingGasFlowBoundary wetSource(X = {0.162,0.001,0.011,0.633,0.194},T = 343.15,m_flow = 0.005) annotation(Placement(transformation(extent = {{86.0,-32.0},{66.0,-12.0}},origin = {0.0,0.0},rotation = 0.0)));

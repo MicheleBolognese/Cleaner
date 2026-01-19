@@ -1,4 +1,4 @@
-within SAMU.HollowFiberTest1;
+within SAMU.HollowFiberTest2_EB_inline;
 
 model DiscretizedGasGasHumidifier
   "Model for a discretized gas-gas humidifier"
@@ -41,7 +41,7 @@ model DiscretizedGasGasHumidifier
     "Mass flowrate primary side, positive flow from portA_sec to portB_sec";
   .Modelica.Units.SI.HeatFlowRate Q_tot "Total heat flow rate out from primary side";
 
-  .FuelCell.Pipes.FlowChannel shell(
+  .SAMU.HollowFiberTest2_EB_inline.FlowChannel shell(
     redeclare package Medium = PrimaryMedium,
     A=fill(.Modelica.Constants.pi*D_h*D_h/4, n),
     A_heat=fill(A_mem, n),
@@ -79,7 +79,7 @@ model DiscretizedGasGasHumidifier
         rotation=180.0,
         origin={-8.0,60.0})));
 
-  .FuelCell.Pipes.FlowChannel tube(
+  .SAMU.HollowFiberTest2_EB_inline.FlowChannel tube(
     redeclare package Medium = SecondaryMedium,
     n_channels=fill(n_tubes, n),
     A=fill(.Modelica.Constants.pi*D_mem*D_mem/4, n),
@@ -115,7 +115,7 @@ model DiscretizedGasGasHumidifier
     "Humidifier tube side" annotation (Dialog(tab="Sub-components", group=
           "Flow channels"), Placement(transformation(extent={{-28,-80},{12,-40}})));
 
-  .Modelon.ThermoFluid.Solids.DynamicWall wall(
+  .SAMU.HollowFiberTest2_EB_inline.DynamicWall wall(
     props(each Cp=wallMaterial.c, Rw=wallThickness./wallMaterial.lambda./
           wallCrossSecArea),
     n=n,
@@ -282,11 +282,11 @@ equation
     elseif lambda_mem[i]> 3 and lambda_mem[i]<4.5 then
       D[i] = 1e-6*(3 - 5.0/3.0*(lambda_mem[i] - 3));
     else
-      D[i] = 0.5e-6;
+      D[i] = 1.25e-6; //modified accordingly to literature
     end if;
 
     Dw[i] =D[i]*.Modelica.Math.exp(k*(1.0/Tk - 1/T_mem[i]));
-    m_trans[i] = (Mv*A_mem/(0.5*t_mem)) * (Dw[i]*(C_shell[i] - C_tube[i]));    
+    m_trans[i] = (Mv*A_mem/(0.5*t_mem)) * (Dw[i]*(C_shell[i] - C_tube[i]));
     m_trans[i] = der(C_w[i]*A_mem*t_mem);
  end for;
 

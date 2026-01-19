@@ -1,4 +1,4 @@
-within SAMU.Ema_ShellAndTube;
+within SAMU.HollowFiberTest_nuovi_bilanci_exp;
 
 model DiscretizedGasGasHumidifier
   "Model for a discretized gas-gas humidifier"
@@ -32,7 +32,7 @@ model DiscretizedGasGasHumidifier
       p_out=portB_prim.p,
       p_sec_in=portA_sec.p,
       p_sec_out=portB_sec.p,
-      Q_flow_sec=sum(tube.wall.Q_flow)),redeclare replaceable package PrimaryMedium = .FuelCell.Media.PreDefined.CondensingGases.CondensingReformateLong,redeclare replaceable package SecondaryMedium = .FuelCell.Media.PreDefined.CondensingGases.CondensingReformateLong);
+      Q_flow_sec=sum(tube.wall.Q_flow)));
 
   /* Local variables */
   .Modelica.Units.SI.MassFlowRate m_flow_prim
@@ -41,7 +41,7 @@ model DiscretizedGasGasHumidifier
     "Mass flowrate primary side, positive flow from portA_sec to portB_sec";
   .Modelica.Units.SI.HeatFlowRate Q_tot "Total heat flow rate out from primary side";
 
-  .FuelCell.Pipes.FlowChannel shell(
+  .SAMU.HollowFiberTest_nuovi_bilanci_exp.FlowChannel shell(
     redeclare package Medium = PrimaryMedium,
     A=fill(.Modelica.Constants.pi*D_h*D_h/4, n),
     A_heat=fill(A_mem, n),
@@ -75,11 +75,11 @@ model DiscretizedGasGasHumidifier
     mX_flow=transpose({if i == H2O_prim then -m_trans_shell else zeros(n) for i in 1:
         nX_shell})) "Humidifier shell side" annotation (Dialog(tab="Sub-components",
         group="Flow channels"), Placement(transformation(
-        extent={{-20,-20},{20,20}},
-        rotation=180,
-        origin={-8,60})));
+        extent={{-20.0,-20.0},{20.0,20.0}},
+        rotation=180.0,
+        origin={-8.0,60.0})));
 
-  .FuelCell.Pipes.FlowChannel tube(
+  .SAMU.HollowFiberTest_nuovi_bilanci_exp.FlowChannel tube(
     redeclare package Medium = SecondaryMedium,
     n_channels=fill(n_tubes, n),
     A=fill(.Modelica.Constants.pi*D_mem*D_mem/4, n),
@@ -139,7 +139,7 @@ model DiscretizedGasGasHumidifier
 
   WallMaterial wallMaterial;
 
-  parameter Boolean useHeatTransfer=false
+  parameter Boolean useHeatTransfer=true
     "Consider heat transfer effects (not used when connected to membrane)"
     annotation (Dialog(tab="Correlations", group="Heat transfer"));
 
@@ -226,7 +226,7 @@ equation
 
  for i in 1:n loop
 
-//     h_water_prim[i] = PrimaryMedium.specificEnthalpy_index(state_prim[i],H2O_prim)*(state_prim[i].X[H2O_prim]);
+//    h_water_prim_[i] = PrimaryMedium.specificEnthalpy_index(state_prim[i],H2O_prim)*(state_prim[i].X[H2O_prim]);
 //    h_water_sec[i] = SecondaryMedium.specificEnthalpy_index(state_sec[i],H2O_sec)*(state_sec[i].X[H2O_sec]);
 
     h_water_prim[i] = (PrimaryMedium.enthalpyOfCondensingGas(state_prim[i].T) + PrimaryMedium.enthalpyOfLiquid(state_prim[i].T))*(state_prim[i].X[H2O_prim]);
@@ -282,7 +282,7 @@ equation
     elseif lambda_mem[i]> 3 and lambda_mem[i]<4.5 then
       D[i] = 1e-6*(3 - 5.0/3.0*(lambda_mem[i] - 3));
     else
-      D[i] = 0.5e-6;
+      D[i] = 1.25e-6; //modified accordingly to literature
     end if;
 
     Dw[i] =D[i]*.Modelica.Math.exp(k*(1.0/Tk - 1/T_mem[i]));
@@ -310,10 +310,8 @@ end if;
 
   connect(wall.qb, tube.wall) annotation (Line(points={{-10,-20},{-10,-32},{0,-32},{0,-50},
           {0,-50}}, color={191,0,0}));
-  connect(portB_prim, shell.portB) annotation (Line(points={{-100,40},{-66,40},{
-          -66,60},{-26,60}}, color={209,60,0}));
-  connect(shell.portA, portA_prim) annotation (Line(points={{10,60},{40,60},{40,
-          -40},{100,-40}}, color={209,60,0}));
+  connect(portB_prim, shell.portB) annotation (Line(points={{-100,40},{-66,40},{-66,60},{-26,60}}, color={209,60,0}));
+  connect(shell.portA, portA_prim) annotation (Line(points={{10,60},{40,60},{40,-40},{100,-40}}, color={209,60,0}));
   connect(tube.portB, portB_sec) annotation (Line(points={{10,-60},{60,-60},{60,
           0},{100,0}}, color={209,60,0}));
   connect(portA_sec, tube.portA) annotation (Line(points={{-100,0},{-66,0},{-66,

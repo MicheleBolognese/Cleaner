@@ -1,4 +1,4 @@
-within SAMU.HollowFiberTest1;
+within SAMU.HollowFiberTest2_water_enthalpy_mod;
 
 model DiscretizedGasGasHumidifier
   "Model for a discretized gas-gas humidifier"
@@ -230,7 +230,7 @@ equation
 //    h_water_sec[i] = SecondaryMedium.specificEnthalpy_index(state_sec[i],H2O_sec)*(state_sec[i].X[H2O_sec]);
 
     h_water_prim[i] = (PrimaryMedium.enthalpyOfCondensingGas(state_prim[i].T) + PrimaryMedium.enthalpyOfLiquid(state_prim[i].T))*(state_prim[i].X[H2O_prim]);
-    h_water_sec[i] = (SecondaryMedium.enthalpyOfCondensingGas(state_sec[i].T) + SecondaryMedium.enthalpyOfLiquid(state_sec[i].T))*(state_prim[i].X[H2O_prim]);
+    h_water_sec[i] = (SecondaryMedium.enthalpyOfCondensingGas(state_sec[i].T) + SecondaryMedium.enthalpyOfLiquid(state_sec[i].T))*(state_sec[i].X[H2O_sec]);
 
 //     h_water_prim_g[i] = PrimaryMedium.enthalpyOfCondensingGas(state_prim[i].T);
 //     h_water_sec_g[i] = SecondaryMedium.enthalpyOfCondensingGas(state_sec[i].T);
@@ -282,11 +282,11 @@ equation
     elseif lambda_mem[i]> 3 and lambda_mem[i]<4.5 then
       D[i] = 1e-6*(3 - 5.0/3.0*(lambda_mem[i] - 3));
     else
-      D[i] = 0.5e-6;
+      D[i] = 1.25e-6; //modified accordingly to literature
     end if;
 
     Dw[i] =D[i]*.Modelica.Math.exp(k*(1.0/Tk - 1/T_mem[i]));
-    m_trans[i] = (Mv*A_mem/(0.5*t_mem)) * (Dw[i]*(C_shell[i] - C_tube[i]));    
+    m_trans[i] = (Mv*A_mem/(0.5*t_mem)) * (Dw[i]*(C_shell[i] - C_tube[i]));
     m_trans[i] = der(C_w[i]*A_mem*t_mem);
  end for;
 
