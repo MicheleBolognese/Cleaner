@@ -94,7 +94,7 @@ model CoolStack_variablePressure "Cooled PEMFC stack test model"
     redeclare package Medium_cath = Medium_cath,
     redeclare package Medium_cooling = MediumWater,
     X_feed_an = humidification_an.x_wet_in,
-    X_feed_cath = humidification_cath.x_wet_in,p_start_out_anode = sinkAnode.p,p_start_in_anode = p_an_in,m_flow_start_cathode = flowCathode.m_flow,p_start_out_cathode = sinkCathode.p,p_start_in_cathode = p_cath_in,T_start_in_anode = flowAnode.T,T_start_in_cathode = flowCathode.T,T_start_out_cathode = flowCathode.T,T_start_out_anode = flowAnode.T,positiveFlow_cooling = true,from_dp_cooling = false,positiveFlow_anode = true,positiveFlow_cathode = true,from_dp_cathode = false,p_start_in_cooling = p_water_in,T_start_in_cooling = sourceW.T,T_start_out_cooling = sourceW.T,m_flow_start_cooling = sourceW.m_flow, h_inflow_an = flowAnode.fluidPort.h_outflow, h_inflow_cath = flowCathode.fluidPort.h_outflow, h_inflow_cooling = sourceW.fluidPort.h_outflow,p_start_out_cooling = sinkP.p,enable_setting = true,dp_smooth = 1e-2,mflow_smooth = 1e-8,dp_smooth_cooling = 1e-2,mflow_smooth_cooling = 1e-8,redeclare replaceable model Friction_anode = .Modelon.ThermoFluid.FlowChannels.PipeResistances.SinglePhase.LinearOperatingPointLoss(d0 = rho_an_nom,dp0 = dp_an_nom,m_flow0 = m_flow_an_nom),redeclare replaceable model Friction_cathode = .Modelon.ThermoFluid.FlowChannels.PipeResistances.SinglePhase.LinearOperatingPointLoss(d0 = rho_cath_nom,dp0 = dp_cath_nom,m_flow0 = m_flow_cath_nom),redeclare replaceable model HeatTransfer_anode = .Modelon.ThermoFluid.FlowChannels.HeatTransfer.SinglePhase.SinglePhase,redeclare replaceable model HeatTransfer_cathode = .Modelon.ThermoFluid.FlowChannels.HeatTransfer.SinglePhase.SinglePhase,redeclare replaceable model Friction_cooling = .Modelon.ThermoFluid.FlowChannels.PipeResistances.TwoPhase.SimpleFromDensity(dp0 = dp_water_nom,mflow0 = m_flow_water_nom),redeclare replaceable model HeatTransfer_cooling = .Modelon.ThermoFluid.FlowChannels.HeatTransfer.TwoPhase.SimpleTwoPhase,N = 5,A_cell = 300e-4,L_anode = 0.0813,D_anode = 0.023,D_cathode = 0.0445,L_cathode = 0.0813,L_cooling = 8.13,D_cooling = 0.0375,diffusiveSpecies = {"O2","N2"},n_cell = 11,M_stack = 10.1,z = 50e-6,alpha = 0.5,c_stack = 2e3,m_flow_start_anode = flowAnode.m_flow,X_start_anode = flowAnode.X,X_start_cathode = flowCathode.X,initOpt_anode = .Modelon.ThermoFluid.Choices.InitOptions.initialValues,initOpt_cooling = .Modelon.ThermoFluid.Choices.InitOptions.initialValues,initOpt_cathode = .Modelon.ThermoFluid.Choices.InitOptions.initialValues,n_channels_cooling = 1,from_dp_anode = false,CF_CathodeSidePressureLoss = 0.4) annotation (Placement(transformation(extent={{-24.0,-2.0},{16.0,38.0}},rotation = 0.0,origin = {0.0,0.0})));
+    X_feed_cath = humidification_cath.x_wet_in,p_start_out_anode = sinkAnode.p,p_start_in_anode = p_an_in,m_flow_start_cathode = flowCathode.m_flow,p_start_out_cathode = sinkCathode.p,p_start_in_cathode = p_cath_in,T_start_in_anode = 70 + 273.15,T_start_in_cathode = 70 + 273.15,T_start_out_cathode = 70 + 273.15,T_start_out_anode = 70 + 273.15,positiveFlow_cooling = true,from_dp_cooling = false,positiveFlow_anode = true,positiveFlow_cathode = true,from_dp_cathode = false,p_start_in_cooling = p_water_in,T_start_in_cooling = 65 + 273.15,T_start_out_cooling = 65 + 273.15,m_flow_start_cooling = sourceW.m_flow, h_inflow_an = flowAnode.fluidPort.h_outflow, h_inflow_cath = flowCathode.fluidPort.h_outflow, h_inflow_cooling = sourceW.fluidPort.h_outflow,p_start_out_cooling = sinkP.p,enable_setting = true,dp_smooth = 1e-2,mflow_smooth = 1e-8,dp_smooth_cooling = 1e-2,mflow_smooth_cooling = 1e-8,redeclare replaceable model Friction_anode = .Modelon.ThermoFluid.FlowChannels.PipeResistances.SinglePhase.LinearOperatingPointLoss(d0 = rho_an_nom,dp0 = dp_an_nom,m_flow0 = m_flow_an_nom),redeclare replaceable model Friction_cathode = .Modelon.ThermoFluid.FlowChannels.PipeResistances.SinglePhase.LinearOperatingPointLoss(d0 = rho_cath_nom,dp0 = dp_cath_nom,m_flow0 = m_flow_cath_nom),redeclare replaceable model HeatTransfer_anode = .Modelon.ThermoFluid.FlowChannels.HeatTransfer.SinglePhase.SinglePhase,redeclare replaceable model HeatTransfer_cathode = .Modelon.ThermoFluid.FlowChannels.HeatTransfer.SinglePhase.SinglePhase,redeclare replaceable model Friction_cooling = .Modelon.ThermoFluid.FlowChannels.PipeResistances.TwoPhase.SimpleFromDensity(dp0 = dp_water_nom,mflow0 = m_flow_water_nom),redeclare replaceable model HeatTransfer_cooling = .Modelon.ThermoFluid.FlowChannels.HeatTransfer.TwoPhase.SimpleTwoPhase,N = 5,A_cell = 300e-4,L_anode = 0.0813,D_anode = 0.023,D_cathode = 0.0445,L_cathode = 0.0813,L_cooling = 8.13,D_cooling = 0.0375,diffusiveSpecies = {"O2","N2"},n_cell = 11,M_stack = 10.1,z = 50e-6,alpha = 0.5,c_stack = 2e3,m_flow_start_anode = flowAnode.m_flow,X_start_anode = flowAnode.X,X_start_cathode = flowCathode.X,initOpt_anode = .Modelon.ThermoFluid.Choices.InitOptions.initialValues,initOpt_cooling = .Modelon.ThermoFluid.Choices.InitOptions.initialValues,initOpt_cathode = .Modelon.ThermoFluid.Choices.InitOptions.initialValues,n_channels_cooling = 1,from_dp_anode = false,CF_CathodeSidePressureLoss = 0.4) annotation (Placement(transformation(extent={{-24.0,-2.0},{16.0,38.0}},rotation = 0.0,origin = {0.0,0.0})));
 
    .FuelCell.Sources.WaterFlowBoundary sourceW(redeclare package Medium = MediumWater, T = T_water_in,use_flow_in = true,use_Th_in = false) annotation (Placement(transformation(extent={{-58.0,-50.0},{-38.0,-30.0}},rotation = 0.0,origin = {0.0,0.0})));
         
@@ -124,8 +124,8 @@ model CoolStack_variablePressure "Cooled PEMFC stack test model"
   .FuelCell.Sensors.WaterMultiDisplaySensor multiDisplaySensor4(redeclare package Medium = MediumWater) annotation (Placement(transformation(extent={{-36,-50},{-16,-30}})));
   .FuelCell.Sensors.WaterMultiDisplaySensor multiDisplaySensor1(redeclare package Medium = MediumWater) annotation (Placement(transformation(extent={{14,-50},{34,-30}})));
   .FuelCell.Sensors.GasMultiDisplaySensor gasSensor3(redeclare package Medium = Medium_an) annotation (Placement(transformation(extent={{-78,20},{-58,40}})));
-  .FuelCell.Sensors.GasMultiDisplaySensor gasSensor2(redeclare package Medium = Medium_an) annotation (Placement(transformation(extent={{24,20},{44,40}})));
-  .FuelCell.Sensors.GasMultiDisplaySensor gasSensor4(redeclare package Medium = Medium_cath) annotation (Placement(transformation(extent={{-78,-30},{-58,-10}})));
+  .FuelCell.Sensors.GasMultiDisplaySensor gasSensor2(redeclare package Medium = Medium_an) annotation (Placement(transformation(extent={{24.0,20.0},{44.0,40.0}},rotation = 0.0,origin = {0.0,0.0})));
+  .FuelCell.Sensors.GasMultiDisplaySensor gasSensor4(redeclare package Medium = Medium_cath) annotation (Placement(transformation(extent={{-78.0,-30.0},{-58.0,-10.0}},rotation = 0.0,origin = {0.0,0.0})));
   .FuelCell.Sensors.GasMultiDisplaySensor gasSensor1(redeclare package Medium = Medium_cath) annotation (Placement(transformation(extent={{26,-30},{46,-10}})));
   
   .Modelica.Blocks.Sources.Ramp ramp_m_flow_water(
@@ -149,6 +149,8 @@ model CoolStack_variablePressure "Cooled PEMFC stack test model"
     .Modelica.Blocks.Sources.CombiTimeTable V_cell_exp(columns = {2},table = {{0,0.969},{225,0.879},{450,0.844},{675,0.809},{900,0.793},{1125,0.791},{1350,0.777},{1575,0.767},{1800,0.762},{2025,0.742},{2250,0.734},{2475,0.718},{2700,0.708},{2925,0.703},{3150,0.687},{3375,0.672},{3600,0.656}}) annotation(Placement(transformation(extent = {{32.08,162.08},{51.92,181.92}},origin = {0.0,0.0},rotation = 0.0)));
     .Modelica.Electrical.Analog.Sources.SignalCurrent variable_load if not constant_current annotation(Placement(transformation(extent = {{-9.03,64.97},{5.03,79.03}},origin = {0.0,0.0},rotation = 0.0)));
     .Modelica.Blocks.Sources.CombiTimeTable current_variation(columns = {2},verboseExtrapolation = false,table = {{0,0.01},{225,9},{450,22.5},{675,45},{900,60},{1125,67.5},{1350,90},{1575,112.5},{1800,135},{2025,180},{2250,225},{2475,270},{2700,300},{2925,315},{3150,360},{3375,405},{3600,450}},tableOnFile = false) annotation(Placement(transformation(extent = {{-210.29,191.71},{-189.71,212.29}},origin = {0.0,0.0},rotation = 0.0)));
+    .Modelica.Blocks.Math.Gain gain(k = 11) annotation(Placement(transformation(extent = {{78.0,162.0},{98.0,182.0}},origin = {0.0,0.0},rotation = 0.0)));
+    .Modelica.Blocks.Sources.RealExpression error_V(y = (abs(coolStack.pin_p.v - gain.y) / gain.y) * 100) annotation(Placement(transformation(extent = {{128.0,162.0},{148.0,182.0}},origin = {0.0,0.0},rotation = 0.0)));
            
 equation       
 
@@ -162,20 +164,19 @@ equation
   connect(display_phTmdot_an_in.y, gasSensor3. u) annotation (Line(points={{-68,40},{
           -68,30.05},{-67.95,30.05}},
                                   color={0,0,0}));
-  connect(display_an_in.data, gasSensor3. u) annotation (Line(points={{-40.462753249644805,37.54955698575693},{-56,37.54955698575693},{-56,30.05},{-67.95,30.05}},
+  connect(display_an_in.data, gasSensor3. u) annotation (Line(points={{-40.46,37.55},{-56,37.55},{-56,30.05},{-67.95,30.05}},
                                                          color={0,0,0}));
-  connect(gasSensor3.portA, flowAnode.fluidPort) annotation (Line(points={{-74,30},{-82.93906632502666,30},{-82.93906632502666,29.768425703538625}}, color={255,128,0}));
+  connect(gasSensor3.portA, flowAnode.fluidPort) annotation (Line(points={{-74,30},{-82.94,30},{-82.94,29.77}}, color={255,128,0}));
   connect(gasSensor3.portB, coolStack.feed_an) annotation (Line(points={{-62,30},{-22,30},{-22,28}}, color={255,128,0}));
-  connect(gasSensor2.u, display_phTmdot_an_out. y) annotation (Line(points={{34.05,
-          30.05},{34.05,35.025},{34,35.025},{34,40}},
+  connect(gasSensor2.u, display_phTmdot_an_out. y) annotation (Line(points={{34.05,30.05},{34.05,35.03},{34,35.03},{34,40}},
                                                color={0,0,0}));
-  connect(gasSensor2.u, display_an_out.data) annotation (Line(points={{34.05,30.05},{34.05,32},{62,32},{62,37.2941}},
+  connect(gasSensor2.u, display_an_out.data) annotation (Line(points={{34.05,30.05},{62,30.05},{62,37.29}},
                                                    color={0,0,0}));
   connect(gasSensor2.portA, coolStack.drain_an) annotation (Line(points={{28,30},{14,30},{14,28}}, color={255,128,0}));
-  connect(gasSensor2.portB, sinkAnode.fluidPort) annotation (Line(points={{40,30},{80.22993225215629,30},{80.22993225215629,29.6149661260782}}, color={255,128,0}));
-  connect(gasSensor4.u, display_phTmdot_cath_in. y) annotation (Line(points={{-67.95,-19.95},{-67.95,-14.975},{-68,-14.975},{-68,-10}},
+  connect(gasSensor2.portB, sinkAnode.fluidPort) annotation (Line(points={{40,30},{80.23,30},{80.23,29.61}}, color={255,128,0}));
+  connect(gasSensor4.u, display_phTmdot_cath_in. y) annotation (Line(points={{-67.95,-19.95},{-67.95,-14.97},{-68,-14.97},{-68,-10}},
                                                      color={0,0,0}));
-  connect(gasSensor4.u, display_cath_in. data) annotation (Line(points={{-67.95,-19.95},{-42.744560661301904,-19.95},{-42.744560661301904,-14}}, color={0,0,0}));
+  connect(gasSensor4.u, display_cath_in. data) annotation (Line(points={{-67.95,-19.95},{-42.74,-19.95},{-42.74,-14}}, color={0,0,0}));
   connect(gasSensor4.portA, flowCathode.fluidPort) annotation (Line(points={{-74,-20},{-83,-20}}, color={255,128,0}));
   connect(gasSensor4.portB, coolStack.feed_cath) annotation (Line(points={{-62,-20},{-22,-20},{-22,8}}, color={255,128,0}));
   connect(gasSensor1.u, display_cath_out.data) annotation (Line(points={{36.05,-19.95},{62.00000000000004,-19.95},{62.00000000000004,-13}},    color={0,0,0}));
@@ -185,10 +186,10 @@ equation
           -19.95},{36.05,-14.975},{36,-14.975},{36,-10}}, color={0,0,0}));
   connect(humidification_an.m_flow_wet_in,flowAnode.m_flow_in) annotation(Line(points = {{-116.40952305789519,32.588021244293536},{-110.40952305789519,32.588021244293536},{-110.40952305789519,45.768425703538625},{-97.93906632502666,45.768425703538625},{-97.93906632502666,39.768425703538625}},color = {0,0,127}));
   connect(humidification_an.x_wet_in,flowAnode.X_in) annotation(Line(points = {{-116.18859441508964,27.91695851069057},{-110.18859441508964,27.91695851069057},{-110.18859441508964,45.768425703538625},{-85.93906632502666,45.768425703538625},{-85.93906632502666,39.768425703538625}},color = {0,0,127}));
-  connect(humidification_cath.m_flow_wet_in,flowCathode.m_flow_in) annotation(Line(points = {{-116.40952305789519,-15.411978755706466},{-110.40952305789519,-15.411978755706466},{-110.40952305789519,-4},{-98,-4},{-98,-10}},color = {0,0,127}));
-  connect(humidification_cath.x_wet_in,flowCathode.X_in) annotation(Line(points = {{-116.18859441508964,-20.08304148930943},{-110,-20.08304148930943},{-110,-4},{-86,-4},{-86,-10}},color = {0,0,127}));
-  connect(ramp_m_flow_water.y,sourceW.m_flow_in) annotation(Line(points = {{-70.28038185111427,-42.54436907142595},{-61.95890105565714,-42.54436907142595},{-61.95890105565714,-30},{-54,-30}},color = {0,0,127}));
-  connect(humidification_an.x_wet_in,sinkAnode.X_in) annotation(Line(points = {{-116.18859441508964,27.91695851069057},{-110.18859441508964,27.91695851069057},{-110.18859441508964,84},{83.22993225215629,84},{83.22993225215629,39.6149661260782}},color = {0,0,127}));
+  connect(humidification_cath.m_flow_wet_in,flowCathode.m_flow_in) annotation(Line(points = {{-116.41,-15.41},{-110.41,-15.41},{-110.41,-4},{-98,-4},{-98,-10}},color = {0,0,127}));
+  connect(humidification_cath.x_wet_in,flowCathode.X_in) annotation(Line(points = {{-116.19,-20.08},{-110,-20.08},{-110,-4},{-86,-4},{-86,-10}},color = {0,0,127}));
+  connect(ramp_m_flow_water.y,sourceW.m_flow_in) annotation(Line(points = {{-70.28,-42.54},{-61.96,-42.54},{-61.96,-30},{-54,-30}},color = {0,0,127}));
+  connect(humidification_an.x_wet_in,sinkAnode.X_in) annotation(Line(points = {{-116.19,27.92},{-110.19,27.92},{-110.19,84},{83.23,84},{83.23,39.61}},color = {0,0,127}));
   connect(humidification_cath.x_wet_in,sinkCathode.X_in) annotation(Line(points = {{-116.19,-20.08},{-110,-20.08},{-110,16},{83.61,16},{83.61,-10.39}},color = {0,0,127}));
   connect(coolStack.pin_n,ground.p) annotation(Line(points = {{4,34.5},{16,34.5},{16,64},{36,64}},color = {0,0,255}));      
   connect(p_an_out.y,sinkAnode.p_in) annotation(Line(points = {{-31,128},{95.22993225215629,128},{95.22993225215629,39.6149661260782}},color = {0,0,127}));
@@ -205,8 +206,9 @@ equation
     connect(p_cath_variation.y[1],p_cath_out.u1) annotation(Line(points = {{-187.46,-82},{-121.73,-82},{-121.73,-124},{-56,-124}},color = {0,0,127}));
     connect(dp_cath_variation.y[1],p_cath_out.u2) annotation(Line(points = {{-187.46,-142},{-120.73,-142},{-120.73,-136},{-56,-136}},color = {0,0,127}));
     connect(variable_load.p,coolStack.pin_p) annotation(Line(points = {{-9.03,72},{-15.03,72},{-15.03,40.5},{-12,40.5},{-12,34.5}},color = {0,0,255}));
-    connect(variable_load.n,coolStack.pin_n) annotation(Line(points = {{5.03,72},{11.030000000000001,72},{11.030000000000001,44},{4,44},{4,34.5}},color = {0,0,255}));
+    connect(variable_load.n,coolStack.pin_n) annotation(Line(points = {{5.03,72},{11.03,72},{11.03,44},{4,44},{4,34.5}},color = {0,0,255}));
     connect(current_variation.y[1],variable_load.i) annotation(Line(points = {{-188.68,202},{-2,202},{-2,80.44}},color = {0,0,127}));
+    connect(V_cell_exp.y[1],gain.u) annotation(Line(points = {{52.91,172},{76,172}},color = {0,0,127}));
     
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-120,
             -100},{120,100}}), graphics={

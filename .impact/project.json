@@ -4,15 +4,15 @@
   "dependencies": [
     {
       "name": "FuelCell",
-      "versionSpecifier": "1.21.0+build.6"
+      "versionSpecifier": "3.0.0+build.21"
     },
     {
       "name": "Modelon",
-      "versionSpecifier": "5.0.0+build.23"
+      "versionSpecifier": "7.0.0+build.30"
     },
     {
       "name": "Modelica",
-      "versionSpecifier": "4.0.0"
+      "versionSpecifier": "4.1.0"
     }
   ],
   "content": [
@@ -100,6 +100,13 @@
       "name": "MIKE",
       "defaultDisabled": false,
       "id": "f7f88a4f23fb4183a62773f991dbe9a4"
+    },
+    {
+      "relpath": "HollowFiberHumidifier_Enhanced.mo",
+      "contentType": "MODELICA",
+      "name": "HollowFiberHumidifier_Enhanced",
+      "defaultDisabled": false,
+      "id": "956ced57232d4cb59e9aa9d397407f0e"
     }
   ],
   "executionOptions": []

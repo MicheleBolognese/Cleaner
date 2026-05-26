@@ -9,7 +9,7 @@
         "choices" : [ {
           "type" : "dynamic",
           "parameters" : {
-            "final_time" : 200,
+            "final_time" : 2000,
             "start_time" : 0
           },
           "simulationOptions" : {
@@ -82,7 +82,7 @@
   },
   "metadata" : {
     "created" : "2025-11-27 15:49:53.150713566",
-    "lastModified" : "2026-05-04T12:32:50.022432177Z",
+    "lastModified" : "2026-04-28T08:47:21.954208569Z",
     "name" : "Experiment 1"
   }
 }

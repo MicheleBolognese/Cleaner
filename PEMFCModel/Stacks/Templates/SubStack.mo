@@ -111,7 +111,7 @@ model SubStack
     n = N,
     D = D_anode,
     C = C_anode,
-    h_inflow = h_inflow_an) annotation (Placement(transformation(extent={{-20.0,58.230125523012546},{20.0,18.230125523012546}},
+    h_inflow = h_inflow_an) annotation (Placement(transformation(extent={{-20.0,58.0},{20.0,18.0}},
           rotation=0.0,origin = {0.0,0.0})));
 
   .PEMFCModel.Pipes.FlowChannel_mass cathode_channel(
@@ -207,7 +207,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(anode_channel.port, cell.port_an) annotation (Line(
-      points={{-6,29.430125523012546},{-6,8.8}},
+      points={{-6,29.2},{-6,8.8}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(cathode_channel.port, cell.port_cath) annotation (Line(
@@ -215,7 +215,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(anode_channel.wall, cell.wall_an) annotation (Line(
-      points={{8,28.230125523012546},{8,10}},
+      points={{8,28},{8,10}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(cathode_channel.wall, cell.wall_cath) annotation (Line(
@@ -236,7 +236,7 @@ equation
       color={255,128,0},
       smooth=Smooth.None));
     connect(proxLoss.drain, anode_channel.portA)  annotation (Line(
-      points={{-40.6,40},{-18,40}},
+      points={{-40.6,40},{-40.6,38},{-18,38}},
       color={255,128,0},
       smooth=Smooth.None));
 
@@ -246,7 +246,7 @@ equation
     
   end if;
   connect(anode_channel.portB, drain_anode) annotation (Line(
-      points={{18,38.230125523012546},{90,38.230125523012546},{90,40}},
+      points={{18,38},{90,38},{90,40}},
       color={255,128,0},
       smooth=Smooth.None));
   connect(feed_cathode, cathode_channel.portA) annotation (Line(

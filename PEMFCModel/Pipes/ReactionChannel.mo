@@ -234,6 +234,14 @@ equation
   portB.h_outflow = fill(gas[end].h, NB);
   portA.X_outflow = fill(gas[1].X, NA);
   portB.X_outflow = fill(gas[end].X, NB); 
+
+  // added sam
+  // FIX: T_outflow aggiunta — variabile stream introdotta nell'aggiornamento di FluidPort.
+  // gas[1].T  = T[1]   = temperatura del primo volume di controllo → riflusso verso portA
+  // gas[end].T = T[n]  = temperatura dell'ultimo volume di controllo → uscita in portB
+  portA.T_outflow = fill(gas[1].T, NA);
+  portB.T_outflow = fill(gas[end].T, NB);
+
   q.T = T_wall;
   q_fluid.Q_flow = Q_fluid;
   q_fluid.T = T;

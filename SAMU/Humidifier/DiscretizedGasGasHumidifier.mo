@@ -1,4 +1,4 @@
-within SAMU.HollowFiberTest2;
+within SAMU.Humidifier;
 
 model DiscretizedGasGasHumidifier
   "Model for a discretized gas-gas humidifier"
@@ -32,7 +32,7 @@ model DiscretizedGasGasHumidifier
       p_out=portB_prim.p,
       p_sec_in=portA_sec.p,
       p_sec_out=portB_sec.p,
-      Q_flow_sec=sum(tube.wall.Q_flow)),n = 3);
+      Q_flow_sec=sum(tube.wall.Q_flow)));
 
   /* Local variables */
   .Modelica.Units.SI.MassFlowRate m_flow_prim
@@ -50,13 +50,10 @@ model DiscretizedGasGasHumidifier
     p_start_in=init_prim.p_in,
     p_start_out=init_prim.p_out,
     p_start=p_start,
-    initFromEnthalpy=init_prim.initFromEnthalpy,
-    h_start_in=init_prim.h_in,
-    h_start_out=init_prim.h_out,
+    initFromEnthalpy=true,
+    h_start_in=init_prim.h_in_used,
+    h_start_out=init_prim.h_out_used,
     h_start=h_start,
-    T_start_in=init_prim.T_in,
-    T_start_out=init_prim.T_out,
-    T_start=T_start,
     X_start=init_prim.X,
     m_flow_start=init_prim.m_flow,
     L=fill(L_mem/n, n),
@@ -71,13 +68,13 @@ model DiscretizedGasGasHumidifier
     redeclare model HeatTransfer = HeatTransfer_prim,
     CF_PressureLoss=CF_PrimarySidePressureLoss,
     CF_HeatTransfer=CF_PrimarySideHeatTransfer,
-    H_flow = h_water_prim .* m_trans_shell,
+    //H_flow = h_water_prim .* m_trans_shell,
     mX_flow=transpose({if i == H2O_prim then -m_trans_shell else zeros(n) for i in 1:
         nX_shell})) "Humidifier shell side" annotation (Dialog(tab="Sub-components",
         group="Flow channels"), Placement(transformation(
-        extent={{-20.0,-20.0},{20.0,20.0}},
-        rotation=180.0,
-        origin={-8.0,60.0})));
+        extent={{-20,-20},{20,20}},
+        rotation=180,
+        origin={-8,60})));
 
   .FuelCell.Pipes.FlowChannel tube(
     redeclare package Medium = SecondaryMedium,
@@ -86,18 +83,15 @@ model DiscretizedGasGasHumidifier
     A_heat=fill(A_mem, n),
     useHeatTransfer=useHeatTransfer,
     initOpt=initOpt_sec,
-    p_start_out=init_sec.p_out,
+    p_start_out=init_sec.p_out_used,
     p_start=p_sec_start,
-    initFromEnthalpy=init_sec.initFromEnthalpy,
-    h_start_in=init_sec.h_in,
-    h_start_out=init_sec.h_out,
+    initFromEnthalpy=true,
+    h_start_in=init_sec.h_in_used,
+    h_start_out=init_sec.h_out_used,
     h_start=h_sec_start,
-    T_start_in=init_sec.T_in,
-    T_start_out=init_sec.T_out,
-    T_start=T_sec_start,
     X_start=init_sec.X,
     m_flow_start=init_sec.m_flow,
-    p_start_in=init_sec.p_in,
+    p_start_in=init_sec.p_in_used,
     L=fill(L_mem/n, n),
     Dhyd=fill(D_mem, n),
     positiveFlow=positiveFlow_sec,
@@ -110,7 +104,7 @@ model DiscretizedGasGasHumidifier
     redeclare model HeatTransfer = HeatTransfer_sec,
     CF_PressureLoss=CF_SecondarySidePressureLoss,
     CF_HeatTransfer=CF_SecondarySideHeatTransfer,
-    H_flow = h_water_sec .* m_trans,
+    //H_flow = h_water_sec .* m_trans,
     mX_flow=transpose({if i == H2O_sec then m_trans else zeros(n) for i in 1:nX_tube}))
     "Humidifier tube side" annotation (Dialog(tab="Sub-components", group=
           "Flow channels"), Placement(transformation(extent={{-28,-80},{12,-40}})));
@@ -124,14 +118,15 @@ model DiscretizedGasGasHumidifier
     m=m,
     T0=T0_wall,
     massLessWall=massLessWall,
-    includeThermalResistance=includeThermalResistance) "Wall model definition"
+    includeThermalResistance=includeThermalResistance,
+    surfaceState = false) "Wall model definition"
     annotation (Dialog(tab="Sub-components", group="Wall"), Placement(
-        transformation(extent={{-30,-20},{10,20}})));
+        transformation(extent={{-30.0,-20.0},{10.0,20.0}},rotation = 0.0,origin = {0.0,0.0})));
 
   replaceable record WallMaterial =
       .Modelon.Thermal.MaterialProperties.PropertyData.ConstantProperties.SolidMaterial
       (
-      c=4188,
+      c=4180,  
       rho= 1968,
       lambda=0.12) constrainedby
     .Modelon.Thermal.MaterialProperties.PropertyData.ConstantProperties.SolidMaterial
@@ -226,14 +221,14 @@ equation
 
  for i in 1:n loop
 
-//    h_water_prim_[i] = PrimaryMedium.specificEnthalpy_index(state_prim[i],H2O_prim)*(state_prim[i].X[H2O_prim]);
+//     h_water_prim[i] = PrimaryMedium.specificEnthalpy_index(state_prim[i],H2O_prim)*(state_prim[i].X[H2O_prim]);
 //    h_water_sec[i] = SecondaryMedium.specificEnthalpy_index(state_sec[i],H2O_sec)*(state_sec[i].X[H2O_sec]);
 
     h_water_prim[i] = (PrimaryMedium.enthalpyOfCondensingGas(state_prim[i].T) + PrimaryMedium.enthalpyOfLiquid(state_prim[i].T))*(state_prim[i].X[H2O_prim]);
-    h_water_sec[i] = (SecondaryMedium.enthalpyOfCondensingGas(state_sec[i].T) + SecondaryMedium.enthalpyOfLiquid(state_sec[i].T))*(state_prim[i].X[H2O_prim]);
+    h_water_sec[i] = (SecondaryMedium.enthalpyOfCondensingGas(state_sec[i].T) + SecondaryMedium.enthalpyOfLiquid(state_sec[i].T))*(state_prim[i].X[H2O_prim]);   // Mod for consistency
 
-//     h_water_prim_g[i] = PrimaryMedium.enthalpyOfCondensingGas(state_prim[i].T);
-//     h_water_sec_g[i] = SecondaryMedium.enthalpyOfCondensingGas(state_sec[i].T);
+     // h_water_prim_g[i] = PrimaryMedium.enthalpyOfCondensingGas(state_prim[i].T);
+     // h_water_sec_g[i] = SecondaryMedium.enthalpyOfCondensingGas(state_sec[i].T); 
 //
 //     h_water_prim_l[i] = PrimaryMedium.enthalpyOfLiquid(state_prim[i].T);
 //     h_water_sec_l[i] = SecondaryMedium.enthalpyOfLiquid(state_sec[i].T);
@@ -296,22 +291,21 @@ equation
 
 if flowConfiguration==.Modelon.ThermoFluid.Choices.FlowConfiguration.CounterFlow then
    for i in 1:n loop
-     connect(shell.wall[n + 1 - i], wall.qa[i]) annotation (Line(points={{-16,50},{-16,32},{-10,32},{-10,
-          20},{-10,20}}, color={191,0,0}));
+     connect(shell.wall[n + 1 - i], wall.qa[i]) annotation (Line(points={{-16,50},{-16,32},{-10,32},{-10,20}}, color={191,0,0}));
      state_prim[n + 1 - i] = shell.channel.volume[i].state;
      m_trans_shell[n + 1 - i] = m_trans[i];
    end for;
 else
-   connect(shell.wall, wall.qa) annotation (Line(points={{-16,50},{-16,32},{-10,32},{-10,
-          20},{-10,20}}, color={191,0,0}));
+   connect(shell.wall, wall.qa) annotation (Line(points={{-16,50},{-16,32},{-10,32},{-10,20}}, color={191,0,0}));
    state_prim = shell.channel.volume.state;
    m_trans_shell = m_trans;
 end if;
 
-  connect(wall.qb, tube.wall) annotation (Line(points={{-10,-20},{-10,-32},{0,-32},{0,-50},
-          {0,-50}}, color={191,0,0}));
-  connect(portB_prim, shell.portB) annotation (Line(points={{-100,40},{-66,40},{-66,60},{-26,60}}, color={209,60,0}));
-  connect(shell.portA, portA_prim) annotation (Line(points={{10,60},{40,60},{40,-40},{100,-40}}, color={209,60,0}));
+  connect(wall.qb, tube.wall) annotation (Line(points={{-10,-20},{-10,-32},{0,-32},{0,-50}}, color={191,0,0}));
+  connect(portB_prim, shell.portB) annotation (Line(points={{-100,40},{-66,40},{
+          -66,60},{-26,60}}, color={209,60,0}));
+  connect(shell.portA, portA_prim) annotation (Line(points={{10,60},{40,60},{40,
+          -40},{100,-40}}, color={209,60,0}));
   connect(tube.portB, portB_sec) annotation (Line(points={{10,-60},{60,-60},{60,
           0},{100,0}}, color={209,60,0}));
   connect(portA_sec, tube.portA) annotation (Line(points={{-100,0},{-66,0},{-66,
@@ -319,7 +313,7 @@ end if;
   annotation (Icon(graphics={
         Text(
           extent={{-100,-80},{100,-120}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="%name"),
         Rectangle(
           extent={{-90,60},{90,-60}},
@@ -414,6 +408,6 @@ where k and Tk are tunable parameters which depend on the membrane material.
 <p style=\"margin-left: 30px;\">International Journal of Automotive Technology, Vol. 14, No. 3, pp. 449-457 (2013)</p>
 <p style=\"margin-left: 30px;\"><a href=\"http://dx.doi.org/10.1007/s12239-013-0049-4\">DOI:10.1007/s12239-013-0049-4</a> </p>
 </html>", revisions="<html>
-Copyright &copy; 2004-2025, MODELON AB <br /> The use of this software component is regulated by the licensing conditions for Modelon Libraries. <br />This copyright notice must, unaltered, accompany all components that are derived from, copied from, <br />or by other means have their origin from any Modelon Library.
+Copyright &copy; 2004-2026, MODELON AB <br /> The use of this software component is regulated by the licensing conditions for Modelon Libraries. <br />This copyright notice must, unaltered, accompany all components that are derived from, copied from, <br />or by other means have their origin from any Modelon Library.
 </html>"));
 end DiscretizedGasGasHumidifier;

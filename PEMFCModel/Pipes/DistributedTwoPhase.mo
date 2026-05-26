@@ -651,6 +651,14 @@ equation
   portB.X_outflow = fill(volume[n].X, NB);
   portA.C_outflow = fill(volume[1].C, NA);
   portB.C_outflow = fill(volume[n].C, NB);
+
+  // added Sam
+  // FIX: T_outflow aggiunta — variabile stream mancante dal FluidPort aggiornato
+  // T[1] = volume[1].T (primo nodo): temperatura di riflusso verso portA
+  // T[n] = volume[n].T (ultimo nodo): temperatura di uscita verso portB
+  portA.T_outflow = fill(T[1], NA);
+  portB.T_outflow = fill(T[n], NB);
+
   q.T = T_wall;
   q_fluid.Q_flow = Q_fluid;
   q_fluid.T = T;

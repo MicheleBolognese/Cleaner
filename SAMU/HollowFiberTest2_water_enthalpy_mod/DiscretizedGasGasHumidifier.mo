@@ -299,7 +299,7 @@ if flowConfiguration==.Modelon.ThermoFluid.Choices.FlowConfiguration.CounterFlow
      connect(shell.wall[n + 1 - i], wall.qa[i]) annotation (Line(points={{-16,50},{-16,32},{-10,32},{-10,
           20},{-10,20}}, color={191,0,0}));
      state_prim[n + 1 - i] = shell.channel.volume[i].state;
-     m_trans_shell[n + 1 - i] = m_trans[i];
+     m_trans_shell[n + 1 - i] = m_trans[i];  //mod by Sam
    end for;
 else
    connect(shell.wall, wall.qa) annotation (Line(points={{-16,50},{-16,32},{-10,32},{-10,
