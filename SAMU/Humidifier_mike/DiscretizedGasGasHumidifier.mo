@@ -1,4 +1,4 @@
-within SAMU.Humidifier;
+within SAMU.Humidifier_mike;
 
 model DiscretizedGasGasHumidifier
   "Model for a discretized gas-gas humidifier"
@@ -9,9 +9,7 @@ model DiscretizedGasGasHumidifier
     redeclare replaceable model Friction_sec =
         .Modelon.ThermoFluid.FlowChannels.PipeResistances.SinglePhase.QuadraticOperatingPointLoss,
     redeclare replaceable model HeatTransfer_prim =
-        .Modelon.ThermoFluid.FlowChannels.HeatTransfer.SinglePhase.DittusBoelterAdjustable,
-    redeclare replaceable model Friction_prim =
-        .Modelon.ThermoFluid.FlowChannels.PipeResistances.SinglePhase.QuadraticOperatingPointLoss,
+        .Modelon.ThermoFluid.FlowChannels.HeatTransfer.SinglePhase.DittusBoelterAdjustable,redeclare replaceable model Friction_prim = .Modelon.ThermoFluid.FlowChannels.PipeResistances.SinglePhase.LinearOperatingPointLoss,
     redeclare
       .Modelon.ThermoFluid.HeatExchangers.Records.Summary.Base_pinchlmtd.BaseSummary
       summary(

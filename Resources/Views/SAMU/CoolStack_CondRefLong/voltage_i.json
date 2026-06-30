@@ -1,0 +1,28 @@
+{
+  "stickies" : [ "variable_load.i" ],
+  "stickyPositions" : [ {
+    "component" : "variable_load",
+    "x" : 0.13,
+    "y" : 103.91
+  } ],
+  "plots" : [ {
+    "variables" : [ "V_cell.showNumber", "V_cell_exp.y[1]" ],
+    "colors" : {
+      "V_cell.showNumber" : [ "#1f77b4" ],
+      "V_cell_exp.y[1]" : [ "#ff7f0e" ]
+    },
+    "x" : -94.74,
+    "y" : -67.28,
+    "width" : 500.0,
+    "height" : 300.0,
+    "title" : "Plot 1",
+    "config" : {
+      "type" : "LINE",
+      "layout" : { },
+      "common" : { },
+      "variables" : { }
+    }
+  } ],
+  "version" : "1",
+  "name" : "VOLTAGE_I"
+}

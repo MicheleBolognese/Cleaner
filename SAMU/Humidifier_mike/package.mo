@@ -1,4 +1,4 @@
 within SAMU;
-package Humidifier
+package Humidifier_mike
     extends .Modelica.Icons.Package;
-end Humidifier;
+end Humidifier_mike;

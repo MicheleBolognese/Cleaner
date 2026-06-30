@@ -1,6 +1,6 @@
-within SAMU.V1_hollowFiber;
+within SAMU.Humidifier_1;
 
-model DiscretizedGasGasHumidifier
+model DiscretizedGasGasHumidifier_base
   "Model for a discretized gas-gas humidifier"
   extends .FuelCell.HeatExchangers.Interfaces.DistributedGasGasHumidifier(
     wallThickness=t_mem,
@@ -225,7 +225,7 @@ equation
 //    h_water_sec[i] = SecondaryMedium.specificEnthalpy_index(state_sec[i],H2O_sec)*(state_sec[i].X[H2O_sec]);
 
     h_water_prim[i] = (PrimaryMedium.enthalpyOfCondensingGas(state_prim[i].T) + PrimaryMedium.enthalpyOfLiquid(state_prim[i].T))*(state_prim[i].X[H2O_prim]);
-    h_water_sec[i] = (SecondaryMedium.enthalpyOfCondensingGas(state_sec[i].T) + SecondaryMedium.enthalpyOfLiquid(state_sec[i].T))*(state_sec[i].X[H2O_sec]);
+    h_water_sec[i] = (SecondaryMedium.enthalpyOfCondensingGas(state_sec[i].T) + SecondaryMedium.enthalpyOfLiquid(state_sec[i].T))*(state_prim[i].X[H2O_prim]);
 
 //     h_water_prim_g[i] = PrimaryMedium.enthalpyOfCondensingGas(state_prim[i].T);
 //     h_water_sec_g[i] = SecondaryMedium.enthalpyOfCondensingGas(state_sec[i].T);
@@ -277,7 +277,7 @@ equation
     elseif lambda_mem[i]> 3 and lambda_mem[i]<4.5 then
       D[i] = 1e-6*(3 - 5.0/3.0*(lambda_mem[i] - 3));
     else
-      D[i] = 1.25e-6;  //modified accordingly to literature
+      D[i] = 1.25e-6;
     end if;
 
     Dw[i] =D[i]*.Modelica.Math.exp(k*(1.0/Tk - 1/T_mem[i]));
@@ -413,4 +413,4 @@ where k and Tk are tunable parameters which depend on the membrane material.
 </html>", revisions="<html>
 Copyright &copy; 2004-2026, MODELON AB <br /> The use of this software component is regulated by the licensing conditions for Modelon Libraries. <br />This copyright notice must, unaltered, accompany all components that are derived from, copied from, <br />or by other means have their origin from any Modelon Library.
 </html>"));
-end DiscretizedGasGasHumidifier;
+end DiscretizedGasGasHumidifier_base;

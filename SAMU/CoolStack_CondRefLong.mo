@@ -1,6 +1,6 @@
-        within SAMU;
+within SAMU;
 
-model CoolStack_variablePressure "Cooled PEMFC stack test model"
+model CoolStack_CondRefLong "Cooled PEMFC stack test model"
     
   extends .Modelon.Icons.Experiment;
 
@@ -57,7 +57,7 @@ model CoolStack_variablePressure "Cooled PEMFC stack test model"
     redeclare package Medium = Medium_cath,
     T_in = T_cath_in ,
     y_dry_in = y_dry_cath,
-    T_dew = T_dew_cath) annotation(Placement(transformation(extent = {{-128.31,-22.31},{-115.69,-9.69}},origin = {0.0,0.0},rotation = 0.0)));
+    T_dew = T_dew_cath) annotation(Placement(transformation(extent = {{-130.3122469373013,-24.312246937301303},{-117.6877530626987,-11.687753062698697}},origin = {0.0,0.0},rotation = 0.0)));
            
   .FuelCell.Sources.GasFlowBoundary flowAnode(
     redeclare package Medium = Medium_an,
@@ -186,11 +186,11 @@ equation
           -19.95},{36.05,-14.975},{36,-14.975},{36,-10}}, color={0,0,0}));
   connect(humidification_an.m_flow_wet_in,flowAnode.m_flow_in) annotation(Line(points = {{-116.40952305789519,32.588021244293536},{-110.40952305789519,32.588021244293536},{-110.40952305789519,45.768425703538625},{-97.93906632502666,45.768425703538625},{-97.93906632502666,39.768425703538625}},color = {0,0,127}));
   connect(humidification_an.x_wet_in,flowAnode.X_in) annotation(Line(points = {{-116.18859441508964,27.91695851069057},{-110.18859441508964,27.91695851069057},{-110.18859441508964,45.768425703538625},{-85.93906632502666,45.768425703538625},{-85.93906632502666,39.768425703538625}},color = {0,0,127}));
-  connect(humidification_cath.m_flow_wet_in,flowCathode.m_flow_in) annotation(Line(points = {{-114.41,-13.41},{-110.41,-13.41},{-110.41,-4},{-98,-4},{-98,-10}},color = {0,0,127}));
-  connect(humidification_cath.x_wet_in,flowCathode.X_in) annotation(Line(points = {{-114.19,-18.08},{-110,-18.08},{-110,-4},{-86,-4},{-86,-10}},color = {0,0,127}));
+  connect(humidification_cath.m_flow_wet_in,flowCathode.m_flow_in) annotation(Line(points = {{-116.41,-15.41},{-110.41,-15.41},{-110.41,-4},{-98,-4},{-98,-10}},color = {0,0,127}));
+  connect(humidification_cath.x_wet_in,flowCathode.X_in) annotation(Line(points = {{-116.19,-20.08},{-110,-20.08},{-110,-4},{-86,-4},{-86,-10}},color = {0,0,127}));
   connect(ramp_m_flow_water.y,sourceW.m_flow_in) annotation(Line(points = {{-70.28,-42.54},{-61.96,-42.54},{-61.96,-30},{-54,-30}},color = {0,0,127}));
   connect(humidification_an.x_wet_in,sinkAnode.X_in) annotation(Line(points = {{-116.19,27.92},{-110.19,27.92},{-110.19,84},{83.23,84},{83.23,39.61}},color = {0,0,127}));
-  connect(humidification_cath.x_wet_in,sinkCathode.X_in) annotation(Line(points = {{-114.19,-18.08},{-110,-18.08},{-110,16},{83.61,16},{83.61,-10.39}},color = {0,0,127}));
+  connect(humidification_cath.x_wet_in,sinkCathode.X_in) annotation(Line(points = {{-116.19,-20.08},{-110,-20.08},{-110,16},{83.61,16},{83.61,-10.39}},color = {0,0,127}));
   connect(coolStack.pin_n,ground.p) annotation(Line(points = {{4,34.5},{16,34.5},{16,64},{36,64}},color = {0,0,255}));      
   connect(p_an_out.y,sinkAnode.p_in) annotation(Line(points = {{-31,128},{95.22993225215629,128},{95.22993225215629,39.6149661260782}},color = {0,0,127}));
   connect(p_cath_out.y,sinkCathode.p_in) annotation(Line(points = {{-33,-130},{112,-130},{112,-4.38503387392182},{95.61496612607814,-4.38503387392182},{95.61496612607814,-10.38503387392182}},color = {0,0,127}));
@@ -201,8 +201,8 @@ equation
     connect(p_an_variation.y[1],p_an_out.u2) annotation(Line(points = {{-187.46,96},{-112.73,96},{-112.73,122},{-54,122}},color = {0,0,127}));
     connect(p_an_variation.y[1],humidification_an.p_in) annotation(Line(points = {{-187.46,96},{-151.51,96},{-151.51,33.79},{-131.57,33.79}},color = {0,0,127}));
     connect(flow_rate_an_variation.y[1],humidification_an.V_flow_dry_in) annotation(Line(points = {{-187.46,42},{-166.51,42},{-166.51,26.21},{-131.57,26.21}},color = {0,0,127}));
-    connect(flow_rate_cath_variation.y[1],humidification_cath.V_flow_dry_in) annotation(Line(points = {{-187.46,-20},{-164.51,-20},{-164.51,-19.79},{-129.57,-19.79}},color = {0,0,127}));
-    connect(p_cath_variation.y[1],humidification_cath.p_in) annotation(Line(points = {{-187.46,-82},{-159.51,-82},{-159.51,-12.21},{-129.57,-12.21}},color = {0,0,127}));
+    connect(flow_rate_cath_variation.y[1],humidification_cath.V_flow_dry_in) annotation(Line(points = {{-187.46,-20},{-164.51,-20},{-164.51,-21.79},{-131.57,-21.79}},color = {0,0,127}));
+    connect(p_cath_variation.y[1],humidification_cath.p_in) annotation(Line(points = {{-187.46,-82},{-159.51,-82},{-159.51,-14.21},{-131.57,-14.21}},color = {0,0,127}));
     connect(p_cath_variation.y[1],p_cath_out.u1) annotation(Line(points = {{-187.46,-82},{-121.73,-82},{-121.73,-124},{-56,-124}},color = {0,0,127}));
     connect(dp_cath_variation.y[1],p_cath_out.u2) annotation(Line(points = {{-187.46,-142},{-120.73,-142},{-120.73,-136},{-56,-136}},color = {0,0,127}));
     connect(variable_load.p,coolStack.pin_p) annotation(Line(points = {{-9.03,72},{-15.03,72},{-15.03,40.5},{-12,40.5},{-12,34.5}},color = {0,0,255}));
@@ -270,4 +270,4 @@ Copyright &copy; 2004-2024, MODELON AB <br /> The use of this software component
 </html>"),
     Icon(coordinateSystem(extent={{-120,-100},{120,100}})));
 
-end CoolStack_variablePressure;
+end CoolStack_CondRefLong;

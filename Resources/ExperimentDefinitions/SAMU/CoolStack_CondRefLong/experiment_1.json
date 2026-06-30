@@ -1,6 +1,6 @@
 {
   "version" : "2",
-  "id" : "b3c60ca2-585b-453a-8c5f-eca0641a7981",
+  "id" : "dce6612d-ea94-48f5-b34a-6a6a359044aa",
   "experiment" : {
     "base" : {
       "analysis" : {
@@ -9,12 +9,12 @@
         "choices" : [ {
           "type" : "dynamic",
           "parameters" : {
-            "final_time" : 200,
+            "final_time" : 3600,
             "start_time" : 0
           },
           "simulationOptions" : {
             "dynamic_diagnostics" : false,
-            "ncp" : 500
+            "ncp" : 3600
           },
           "solverOptions" : {
             "store_event_points" : true
@@ -44,8 +44,8 @@
     }
   },
   "metadata" : {
-    "created" : "2026-05-04 12:27:26.126991151",
-    "lastModified" : "2026-05-04T12:28:09.981076432Z",
+    "created" : "2025-08-08 08:59:41.48567484",
+    "lastModified" : "2025-08-19T08:39:22.154909175Z",
     "name" : "Experiment 1"
   }
 }
